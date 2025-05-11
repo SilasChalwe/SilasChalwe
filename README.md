@@ -2,13 +2,13 @@
 
 **Computer Engineering Student | Second Year**
 
-Welcome to my GitHub profile! I'm Chalwe Silas, a passionate second-year Computer Engineering student with a keen interest in software development, AI, gaming, robotics, IoT, and data analytics. I enjoy exploring new technologies and applying them to solve real-world problems.
+Welcome to my GitHub profile! I'm Chalwe Silas, a passionate third year Computer Engineering student with a keen interest in software development, AI, gaming, robotics, IoT, and data analytics. I enjoy exploring new technologies and applying them to solve real-world problems.
 
 ## About Me
 
 - Name: Chalwe Silas
 - Field of Study: Computer Engineering
-- Current Year: Second Year
+- Current Year: Third Year
 - Interests: Artificial Intelligence (AI), Gaming, Robotics, Software Development, Internet of Things (IoT), Data Analytics
 
 ## Projects and Experience
@@ -25,9 +25,9 @@ Welcome to my GitHub profile! I'm Chalwe Silas, a passionate second-year Compute
 
 ## Skills
 
-- Programming Languages: Python, C/C++, JavaScript
-- Web Development: HTML, CSS, Node.js, Django
-- Database Management: Microsoft SQL, MySQL
+- Programming Languages: Python, C/C++, JavaScript, java ,flutter and php
+- Web Development: HTML, CSS, Node.js, Django,spring boot
+- Database Management: Microsoft SQL, MySQL,firebase
 - Version Control:GitHub
 
 ## Contact
