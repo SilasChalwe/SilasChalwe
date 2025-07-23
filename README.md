@@ -21,14 +21,13 @@ All repositories below are projects I’ve contributed to, created, or forked fo
 
 ### 🌐 Web & API Projects
 
-* **[nextinnomind](https://github.com/SilasChalwe/nextinnomind)** – *Official website of Next Innovative Minds* `HTML`
-* **[accommo-find-api](https://github.com/SilasChalwe/accommo-find-api)** – *Spring Boot API for student housing and boarding finder* `Java`
-* **[studypal](https://github.com/SilasChalwe/studypal)** – *Frontend UI for study resources* `CSS`
+* **[nextinnomind](https://github.com/SilasChalwe/nextinnomind)** – *Official website of Next Innovative Minds* 
+* **[accommo-find-api](https://github.com/SilasChalwe/accommo-find-api)** – *Spring Boot API for student housing and boarding finder* 
 
 
 ### 💬 Chat & Communication
 
-* **[rephrase\_chatapi](https://github.com/SilasChalwe/rephrase_chatapi)** – *Chat moderation & tone-polishing Java API* `Java`
+* **[rephrase\_chatapi](https://github.com/SilasChalwe/rephrase_chatapi)** – *Chat moderation & tone-polishing Java API* 
 * **[Rephrase-app](https://github.com/SilasChalwe/Rephrase-app)** – *Front-end for Rephrase Chat (forked)* 
 
 ### 🔬 Labs & Experiments
@@ -36,7 +35,6 @@ All repositories below are projects I’ve contributed to, created, or forked fo
 * **[Java-lab](https://github.com/SilasChalwe/Java-lab)** – *Java experiments and problem-solving* 
 * **[python-lab](https://github.com/SilasChalwe/python-lab)** – *General Python practice and tools*
 * **[C-Cpp-lab](https://github.com/SilasChalwe/C-Cpp-lab)** – *C/C++ projects and microcontroller testing*
-* **[SilasChalwe](https://github.com/SilasChalwe/SilasChalwe)** – *Profile README and GitHub config*
 
 ---
 
