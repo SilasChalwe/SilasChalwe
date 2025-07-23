@@ -1,38 +1,43 @@
-# Chalwe Silas
 
-**Computer Engineering Student | Second Year**
+### Computer Engineering | AI | Embedded Systems | Full Stack
 
-Welcome to my GitHub profile! I'm Chalwe Silas, a passionate third year Computer Engineering student with a keen interest in software development, AI, gaming, robotics, IoT, and data analytics. I enjoy exploring new technologies and applying them to solve real-world problems.
 
-## About Me
+## 💼 Projects & Repositories
 
-- Name: Chalwe Silas
-- Field of Study: Computer Engineering
-- Current Year: Third Year
-- Interests: Artificial Intelligence (AI), Gaming, Robotics, Software Development, Internet of Things (IoT), Data Analytics
+All repositories below are projects I’ve contributed to, created, or forked for further research, development, or deployment.
 
-## Projects and Experience
+### 🔐 Security & Data Protection
 
-### Academic Projects
+* **[CS301](https://github.com/SilasChalwe/CS301)** – *Hardware-enhanced data protection system using AES-256 encryption and Arduino integration* 
+* **[text\_to\_voice](https://github.com/SilasChalwe/text_to_voice)** – *Text-to-speech Java API using eSpeak* 
+* **[vosk-server](https://github.com/SilasChalwe/vosk-server)** – *WebSocket & gRPC server for STT using Vosk/Kaldi (forked)* 
 
-- Pharmacy Description RX Database: Developed a database system for managing pharmacy prescriptions and descriptions.
-- File System Simulation: Implementing a FAT32 file system simulation for Linux and Windows.
+### 🧠 AI & Language Models
 
-### Ongoing Projects
+* **[agro\_speak](https://github.com/SilasChalwe/agro_speak)** – *Repository for AI models trained on agricultural data* 
+* **[xtts-api](https://github.com/SilasChalwe/xtts-api)** – *TTS API powered by XTTSv2 in Docker* 
+* **[NextInnoMind/next\_bemba\_ai](https://huggingface.co/NextInnoMind/next_bemba_ai)** – *Bemba-only Whisper model (Whisper Small)* 
+* **[NextInnoMind/next\_bemba\_ai\_medium](https://huggingface.co/NextInnoMind/next_bemba_ai_medium)** – *Multilingual Whisper Medium model with Bemba `<|bem|>` token support* 
 
-- Smart Irrigation System: Developing an IoT-based smart irrigation system to optimize water usage for maize and soybean crops.
-- Kuwired: Founder and owner, working on various innovative projects and solutions.
+### 🌐 Web & API Projects
 
-## Skills
+* **[nextinnomind](https://github.com/SilasChalwe/nextinnomind)** – *Official website of Next Innovative Minds* `HTML`
+* **[accommo-find-api](https://github.com/SilasChalwe/accommo-find-api)** – *Spring Boot API for student housing and boarding finder* `Java`
+* **[studypal](https://github.com/SilasChalwe/studypal)** – *Frontend UI for study resources* `CSS`
 
-- Programming Languages: Python, C/C++, JavaScript, java ,flutter and php
-- Web Development: HTML, CSS, Node.js, Django,spring boot
-- Database Management: Microsoft SQL, MySQL,firebase
-- Version Control:GitHub
 
-## Contact
+### 💬 Chat & Communication
 
-- Email: mchalwesilas@gmail.com
-- Email: silaschalwe@outlook.com
+* **[rephrase\_chatapi](https://github.com/SilasChalwe/rephrase_chatapi)** – *Chat moderation & tone-polishing Java API* `Java`
+* **[Rephrase-app](https://github.com/SilasChalwe/Rephrase-app)** – *Front-end for Rephrase Chat (forked)* 
 
-Feel free to explore my repositories and connect with me. I'm always open to collaboration and learning opportunities!
+### 🔬 Labs & Experiments
+
+* **[Java-lab](https://github.com/SilasChalwe/Java-lab)** – *Java experiments and problem-solving* 
+* **[python-lab](https://github.com/SilasChalwe/python-lab)** – *General Python practice and tools*
+* **[C-Cpp-lab](https://github.com/SilasChalwe/C-Cpp-lab)** – *C/C++ projects and microcontroller testing*
+* **[SilasChalwe](https://github.com/SilasChalwe/SilasChalwe)** – *Profile README and GitHub config*
+
+---
+
+*"Always building. Always improving. From low-level to high-impact."*
