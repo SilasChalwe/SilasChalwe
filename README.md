@@ -132,7 +132,7 @@ class SilasChalwe:
 
 <div align="center">
   <a href="https://github.com/SilasChalwe/CS301">
-    <img width="45%" src="https://github-readme-stats.vercel.app/api/pin/?username=SilasChalwe&repo=CS301 &theme=react&bg_color=0d1117&title_color=00b3ff&icon_color=00b4ff&text_color=c9d1d9&hide_border=true" />
+    <img width="45%" src="https://github-readme-stats.vercel.app/api/pin/?username=SilasChalwe&repo=CS301&theme=react&bg_color=0d1117&title_color=00b3ff&icon_color=00b4ff&text_color=c9d1d9&hide_border=true" />
   </a>
 </div>
 
