@@ -122,17 +122,17 @@ class SilasChalwe:
 </h2>
 
 <div align="center">
-  <a href="https://github.com/SilasChalwe/ag-ai-assistant">
-    <img width="45%" src="https://github-readme-stats.vercel.app/api/pin/?username=SilasChalwe&repo=ag-ai-assistant&theme=react&bg_color=0d1117&title_color=00b3ff&icon_color=00b4ff&text_color=c9d1d9&hide_border=true" />
+  <a href="https://github.com/SilasChalwe/Rephrase-app">
+    <img width="45%" src="https://github-readme-stats.vercel.app/api/pin/?username=SilasChalwe&repo=Rephrase-app&theme=react&bg_color=0d1117&title_color=00b3ff&icon_color=00b4ff&text_color=c9d1d9&hide_border=true" />
   </a>
-  <a href="https://github.com/SilasChalwe/hardware-data-protection">
-    <img width="45%" src="https://github-readme-stats.vercel.app/api/pin/?username=SilasChalwe&repo=hardware-data-protection&theme=react&bg_color=0d1117&title_color=00b3ff&icon_color=00b4ff&text_color=c9d1d9&hide_border=true" />
+  <a href="https://github.com/SilasChalwe/BibleQuizApp">
+    <img width="45%" src="https://github-readme-stats.vercel.app/api/pin/?username=SilasChalwe&repo=BibleQuizApp&theme=react&bg_color=0d1117&title_color=00b3ff&icon_color=00b4ff&text_color=c9d1d9&hide_border=true" />
   </a>
 </div>
 
 <div align="center">
-  <a href="https://github.com/SilasChalwe/flutter-chat-app">
-    <img width="45%" src="https://github-readme-stats.vercel.app/api/pin/?username=SilasChalwe&repo=flutter-chat-app&theme=react&bg_color=0d1117&title_color=00b3ff&icon_color=00b4ff&text_color=c9d1d9&hide_border=true" />
+  <a href="https://github.com/SilasChalwe/CS301">
+    <img width="45%" src="https://github-readme-stats.vercel.app/api/pin/?username=SilasChalwe&repo=CS301 &theme=react&bg_color=0d1117&title_color=00b3ff&icon_color=00b4ff&text_color=c9d1d9&hide_border=true" />
   </a>
 </div>
 
