@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CHALWE SILAS - Resume Dashboard</title>
+<style>
+    body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f0f2f5; display: flex; }
+    #dashboard-panel { width: 42%; height: 100vh; background-color: #ffffff; box-shadow: 2px 0 10px rgba(0,0,0,0.1); overflow-y: auto; padding: 20px; box-sizing: border-box; }
+    #preview-panel { width: 100%; height: 100vh; overflow-y: auto; padding: 40px 20px; box-sizing: border-box; display: flex; justify-content: center; }
+    body.dashboard-mode #preview-panel { width: 58%; }
+    body.compact-resume .sidebar { padding-top: 22px; padding-bottom: 22px; }
+    body.compact-resume .main-content { padding-top: 22px; padding-bottom: 22px; }
+    body.compact-resume .main-section-title { margin-top: 10px; margin-bottom: 6px; }
+    body.compact-resume .block-item { margin-bottom: 7px; }
+    body.compact-resume li, body.compact-resume .profile-text, body.compact-resume .skills-line { font-size: 8pt; }
+    .hidden { display: none !important; }
+    h2 { color: #1a252c; border-bottom: 2px solid #00a0df; padding-bottom: 5px; margin-top: 0; font-size: 14pt;}
+    h3 { color: #00a0df; font-size: 10pt; margin-bottom: 5px; margin-top: 15px; text-transform: uppercase;}
+    .form-group { margin-bottom: 12px; }
+    label { display: block; font-size: 8pt; font-weight: bold; color: #4a5568; margin-bottom: 4px; text-transform: uppercase;}
+    input[type="text"], textarea { width: 100%; padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 9pt; box-sizing: border-box; font-family: inherit; }
+    textarea { height: 70px; resize: vertical; }
+    .repeater-block { background: #f7fafc; border: 1px solid #e2e8f0; padding: 10px; border-radius: 4px; margin-bottom: 10px; position: relative; }
+    .btn { background-color: #00a0df; color: white; border: none; padding: 6px 12px; font-size: 8.5pt; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 5px; }
+    .btn-secondary { background-color: #4a5568; }
+    .btn-print { background-color: #2b6cb0; }
+    .btn-danger { background-color: #e53e3e; font-size: 7.5pt; padding: 3px 6px; margin-top: 0;}
+    .btn-mini { background-color: #edf2f7; color: #1a252c; border: 1px solid #cbd5e0; padding: 3px 7px; font-size: 7.5pt; }
+    .btn-save { background-color: #38a169 !important; width: 100%; padding: 10px; margin-top: 10px; }
+    .dashboard-toolbar { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 12px; }
+    .dashboard-toolbar .btn { width: 100%; margin-top: 0; padding: 9px 8px; }
+    .mode-tabs { display: flex; flex-wrap: wrap; gap: 5px; margin: 10px 0 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; }
+    .tab-btn { background: #edf2f7; color: #1a252c; border: 1px solid #cbd5e0; border-radius: 4px; padding: 6px 8px; font-size: 8pt; font-weight: bold; cursor: pointer; }
+    .tab-btn.active { background: #00a0df; border-color: #00a0df; color: #ffffff; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .panel-note { color: #718096; font-size: 8pt; margin: 2px 0 10px; }
+    .item-actions { display: flex; justify-content: flex-end; gap: 4px; margin-bottom: 8px; }
+    .validation-panel { background: #fffaf0; border: 1px solid #f6ad55; color: #744210; border-radius: 4px; padding: 8px 10px; font-size: 8pt; margin-bottom: 10px; }
+    .validation-panel strong { display: block; margin-bottom: 4px; }
+    .validation-panel ul { color: #744210; margin-top: 0; padding-left: 16px; }
+    .toggle-row { display: flex; align-items: center; gap: 7px; font-size: 8pt; color: #4a5568; margin: 8px 0 12px; }
+    .bullet-input-group { display: flex; margin-bottom: 4px; }
+    .bullet-input-group input { flex-grow: 1; margin-right: 4px; }
+    .a4-page { width: 210mm; min-height: 297mm; background-color: #ffffff; box-shadow: 0 4px 20px rgba(0,0,0,0.15); box-sizing: border-box; }
+    .resume-table { width: 100%; border-collapse: collapse; min-height: 297mm; }
+    .sidebar { width: 34%; background-color: #1a252c !important; color: #ffffff; vertical-align: top; padding: 30px 16px; }
+    .main-content { width: 66%; vertical-align: top; padding: 30px 25px; background-color: #ffffff; }
+    .name-heading { font-size: 19pt; font-weight: bold; color: #00a0df; text-transform: uppercase; margin: 0 0 6px 0; letter-spacing: 0.5px; text-align: center; }
+    .title-subheading { font-size: 9.5pt; font-weight: bold; color: #ffffff; text-align: center; margin-bottom: 20px; white-space: nowrap; }
+    .sidebar-section-title { font-size: 10pt; font-weight: bold; color: #00a0df; text-transform: uppercase; border-bottom: 1px solid #2d3d4a; padding-bottom: 3px; margin-top: 18px; margin-bottom: 10px; letter-spacing: 0.5px; }
+    .sidebar-label { font-size: 7pt; text-transform: uppercase; color: #00a0df; font-weight: bold; margin-top: 8px; margin-bottom: 1px; }
+    .sidebar-value { font-size: 8.5pt; color: #e2e8f0; margin-bottom: 6px; word-break: break-all; }
+    .sidebar-item { margin-bottom: 10px; }
+    .sidebar-item-title { font-weight: bold; font-size: 8.5pt; color: #ffffff; }
+    .sidebar-item-desc { font-size: 8pt; color: #a0aec0; }
+    .main-section-title { font-size: 11pt; font-weight: bold; color: #1a252c; text-transform: uppercase; margin-top: 15px; margin-bottom: 8px; border-left: 3px solid #00a0df; padding-left: 8px; letter-spacing: 0.5px; }
+    .profile-text { color: #4a5568; font-size: 8.5pt; text-align: justify; margin-bottom: 10px; }
+    .skills-line { font-size: 8.5pt; margin-bottom: 4px; color: #4a5568; }
+    .skills-tech { color: #00a0df; font-weight: bold; }
+    .block-item { margin-bottom: 10px; }
+    .block-header { position: relative; margin-bottom: 2px; }
+    .block-title { font-weight: bold; font-size: 9.5pt; color: #1a252c; float: left; }
+    .block-date { float: right; color: #718096; font-size: 8.5pt; }
+    .block-subtitle { font-weight: 600; color: #00a0df; font-size: 9pt; margin-bottom: 2px; }
+    .clear { clear: both; }
+    ul { margin: 2px 0 0 0; padding-left: 14px; color: #4a5568; }
+    li { margin-bottom: 2px; text-align: justify; font-size: 8.5pt; }
+    @media print {
+        @page { margin: 0; }
+        #dashboard-panel { display: none !important; }
+        #preview-panel { width: 100% !important; padding: 0 !important; margin: 0 !important; display: block !important; }
+        body { background-color: #ffffff !important; }
+        .a4-page { box-shadow: none !important; }
+        .sidebar { background-color: #1a252c !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+</style>
+</head>
+<body>
+<div id="dashboard-panel" class="hidden">
+    <h2>CV Content Management Dashboard</h2>
+    <p id="data-source-label" class="panel-note">Reusable template mode</p>
+    <div class="dashboard-toolbar">
+        <button class="btn btn-secondary" onclick="toggleDashboard()">CV View</button>
+        <button class="btn btn-print" onclick="printResume()">Print / PDF</button>
+        <button id="export-btn" class="btn btn-save" onclick="saveData()">Export Template JSON</button>
+        <button class="btn btn-secondary" onclick="reloadResumeData()">Reload JSON</button>
+    </div>
+    <label class="toggle-row"><input type="checkbox" id="compact-toggle" onchange="setCompactMode(this.checked)"> Compact print spacing</label>
+    <div id="validation-panel" class="validation-panel hidden"></div>
+    <div class="mode-tabs">
+        <button class="tab-btn active" data-tab="profile" onclick="showTab('profile')">Profile</button>
+        <button class="tab-btn" data-tab="sidebar" onclick="showTab('sidebar')">Sidebar</button>
+        <button class="tab-btn" data-tab="skills" onclick="showTab('skills')">Skills</button>
+        <button class="tab-btn" data-tab="experience" onclick="showTab('experience')">Experience</button>
+        <button class="tab-btn" data-tab="projects" onclick="showTab('projects')">Projects</button>
+        <button class="tab-btn" data-tab="education" onclick="showTab('education')">Education</button>
+    </div>
+    <section class="tab-panel active" data-panel="profile">
+        <h3>Header Data</h3>
+        <div class="form-group"><label>Full Name</label><input type="text" id="input-name" oninput="updateResume()"></div>
+        <div class="form-group"><label>Professional Title</label><input type="text" id="input-title" oninput="updateResume()"></div>
+        <h3>Professional Profile</h3>
+        <p class="panel-note">Keep this short enough to scan in five seconds.</p>
+        <div class="form-group"><label>Profile Summary</label><textarea id="input-profile" oninput="updateResume()"></textarea></div>
+    </section>
+    <section class="tab-panel" data-panel="sidebar">
+        <h3>Contact Information</h3><div id="contact-fields"></div>
+        <h3>Certifications & Training</h3><div id="certifications-ctrl"></div><button class="btn" onclick="addItem('certifications')">+ Add Certification</button>
+        <h3>Memberships</h3><div id="memberships-ctrl"></div><button class="btn" onclick="addItem('memberships')">+ Add Membership</button>
+    </section>
+    <section class="tab-panel" data-panel="skills">
+        <h3>Technical Skills</h3><div id="skills-ctrl"></div><button class="btn" onclick="addItem('skills')">+ Add Skill Category</button>
+    </section>
+    <section class="tab-panel" data-panel="experience">
+        <h3>Engineering Experience</h3><div id="experience-ctrl"></div><button class="btn" onclick="addBlockItem('experience')">+ Add Experience</button>
+    </section>
+    <section class="tab-panel" data-panel="projects">
+        <h3>Selected Tech Projects</h3><div id="projects-ctrl"></div><button class="btn" onclick="addBlockItem('projects')">+ Add Project</button>
+    </section>
+    <section class="tab-panel" data-panel="education">
+        <h3>Education & Leadership</h3><div id="education-ctrl"></div><button class="btn" onclick="addBlockItem('education')">+ Add Education Entry</button>
+    </section>
+</div>
+<div id="preview-panel">
+    <div class="a4-page">
+        <table class="resume-table">
+            <tr>
+                <td class="sidebar">
+                    <div id="view-name" class="name-heading"></div>
+                    <div id="view-title" class="title-subheading"></div>
+                    <div class="sidebar-section-title">CONTACT</div><div id="view-contact"></div>
+                    <div class="sidebar-section-title">CERTIFICATIONS & TRAINING</div><div id="view-certs"></div>
+                    <div class="sidebar-section-title">MEMBERSHIPS</div><div id="view-memberships"></div>
+                </td>
+                <td class="main-content">
+                    <div class="main-section-title" style="margin-top: 0;">PROFESSIONAL PROFILE</div>
+                    <p id="view-profile" class="profile-text"></p>
+                    <div class="main-section-title">TECHNICAL SKILLS</div><div id="view-skills"></div>
+                    <div class="main-section-title">ENGINEERING EXPERIENCE</div><div id="view-experience"></div>
+                    <div class="main-section-title">SELECTED TECH PROJECTS</div><div id="view-projects"></div>
+                    <div class="main-section-title">EDUCATION & LEADERSHIP</div><div id="view-education"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+    const TEMPLATE_RESUME_DATA = {
+        name: "YOUR NAME",
+        title: "Professional Title",
+        contact: {
+            "EMAIL": "you@example.com",
+            "LOCATION": "City, Country",
+            "PHONE": "+000 000 000 000",
+            "LINKEDIN": "linkedin.com/in/your-profile",
+            "GITHUB": "github.com/your-username"
+        },
+        certifications: [
+            { title: "Certification Name", desc: "Issuing organization, year" },
+            { title: "Training Programme", desc: "Short description or credential detail" }
+        ],
+        memberships: [
+            { title: "Professional Membership", desc: "Association or chapter name" }
+        ],
+        profile: "Briefly summarize your professional focus, strongest skills, and the type of value you bring. Keep this section short, specific, and easy to scan.",
+        skills: [
+            { category: "Technical", items: "Skill one, Skill two, Skill three" },
+            { category: "Tools", items: "Tool one, Tool two, Tool three" },
+            { category: "Platforms", items: "Platform one, Platform two, Platform three" }
+        ],
+        experience: [
+            { title: "Role or Position", date: "Year - Present", subtitle: "Organization Name", bullets: ["Describe a responsibility, project, or measurable achievement.", "Describe the tools, systems, or process you worked with."] }
+        ],
+        projects: [
+            { title: "Project Name", date: "Project Type", bullets: ["Describe what the project does, your role, and the technologies used."] }
+        ],
+        education: [
+            { title: "Degree or Certificate", date: "Year", subtitle: "Institution Name", bullets: ["Add relevant academic result, coursework, award, or activity."] }
+        ]
+    };
+    let RESUME_DATA = null;
+    let ACTIVE_TAB = 'profile';
+    let IS_MY_RESUME = false;
+
+    function cloneData(data) {
+        return JSON.parse(JSON.stringify(data));
+    }
+
+    async function loadMyResumeData() {
+        const response = await fetch('cv.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error(`Unable to load cv.json (${response.status})`);
+        RESUME_DATA = await response.json();
+    }
+
+    function showLoadError(error) {
+        document.getElementById('dashboard-panel').classList.add('hidden');
+        document.body.classList.remove('dashboard-mode');
+        document.getElementById('preview-panel').innerHTML = `<div class="a4-page" style="padding: 30px;"><div class="main-section-title" style="margin-top: 0;">Resume Data Error</div><p class="profile-text">Could not load your cv.json. Use #cv or #dash for the reusable template, or make sure cv.json is in the same folder as resume.html before opening #silaschalwe or #silaschalwedash.</p><p class="profile-text">${escapeHtml(error.message)}</p></div>`;
+    }
+
+    function escapeHtml(value) {
+        return String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+    }
+
+    function escapeAttr(value) {
+        return escapeHtml(value);
+    }
+
+    function saveData() {
+        if (!RESUME_DATA) return;
+        const dataStr = JSON.stringify(RESUME_DATA, null, 4);
+        const blob = new Blob([dataStr], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = IS_MY_RESUME ? "cv.json" : "template-cv.json";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    async function reloadResumeData() {
+        try {
+            if (IS_MY_RESUME) {
+                await loadMyResumeData();
+            } else {
+                RESUME_DATA = cloneData(TEMPLATE_RESUME_DATA);
+            }
+            setupDashboard();
+        } catch (error) {
+            showLoadError(error);
+        }
+    }
+
+    function printResume() {
+        window.print();
+    }
+
+    function setCompactMode(isCompact) {
+        document.body.classList.toggle('compact-resume', isCompact);
+    }
+
+    function showTab(tabName) {
+        ACTIVE_TAB = tabName;
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tabName));
+        document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.toggle('active', panel.dataset.panel === tabName));
+    }
+
+    function isDashboardHash() {
+        return ['#dash', '#dashb', '#dashboard', '#silaschalwedash', '#silaschalwecvdash', '#@silaschalwedash', '#@silaschalwecvdash'].includes(window.location.hash.toLowerCase());
+    }
+
+    function isMyResumeHash() {
+        return ['#silaschalwe', '#silaschalwecv', '#silaschalwedash', '#silaschalwecvdash', '#@silaschalwe', '#@silaschalwecv', '#@silaschalwedash', '#@silaschalwecvdash'].includes(window.location.hash.toLowerCase());
+    }
+
+    function setDashboardMode(isOpen) {
+        document.body.classList.toggle('dashboard-mode', isOpen);
+        document.getElementById('dashboard-panel').classList.toggle('hidden', !isOpen);
+    }
+
+    function toggleDashboard() {
+        const isOpen = document.getElementById('dashboard-panel').classList.contains('hidden');
+        setDashboardMode(isOpen);
+        history.replaceState(null, '', isOpen ? (IS_MY_RESUME ? '#silaschalwedash' : '#dash') : `${window.location.pathname}${IS_MY_RESUME ? '#silaschalwe' : ''}`);
+    }
+
+    async function loadRouteData() {
+        IS_MY_RESUME = isMyResumeHash();
+        if (IS_MY_RESUME) {
+            await loadMyResumeData();
+        } else {
+            RESUME_DATA = cloneData(TEMPLATE_RESUME_DATA);
+        }
+    }
+
+    function setupDashboard() {
+        if (!RESUME_DATA) return;
+        document.getElementById('data-source-label').innerText = IS_MY_RESUME ? 'Personal CV mode: loaded from cv.json' : 'Reusable template mode: using placeholder data';
+        document.getElementById('export-btn').innerText = IS_MY_RESUME ? 'Export Updated cv.json' : 'Export Template JSON';
+        document.getElementById('input-name').value = RESUME_DATA.name; document.getElementById('input-title').value = RESUME_DATA.title; document.getElementById('input-profile').value = RESUME_DATA.profile;
+        let contactCtrls = ''; for (const key in RESUME_DATA.contact) { contactCtrls += `<div class="form-group"><label>${escapeHtml(key)}</label><input type="text" value="${escapeAttr(RESUME_DATA.contact[key])}" oninput="RESUME_DATA.contact['${escapeAttr(key)}']=this.value; updateResume();"></div>`; }
+        document.getElementById('contact-fields').innerHTML = contactCtrls;
+        renderListControls('certifications', ['title', 'desc']); renderListControls('memberships', ['title', 'desc']); renderListControls('skills', ['category', 'items']);
+        renderBlockControls('experience'); renderBlockControls('projects'); renderBlockControls('education'); updateResume(); showTab(ACTIVE_TAB);
+    }
+    function renderItemActions(key, idx) {
+        return `<div class="item-actions"><button class="btn btn-mini" onclick="moveItem('${key}', ${idx}, -1)">Up</button><button class="btn btn-mini" onclick="moveItem('${key}', ${idx}, 1)">Down</button><button class="btn btn-danger" onclick="removeItem('${key}', ${idx})">Delete</button></div>`;
+    }
+    function renderListControls(key, fields) { let html = ''; RESUME_DATA[key].forEach((item, idx) => { html += `<div class="repeater-block">${renderItemActions(key, idx)}${fields.map(f => `<div class="form-group"><label>${escapeHtml(f)}</label><input type="text" value="${escapeAttr(item[f] || '')}" oninput="RESUME_DATA['${key}'][${idx}]['${f}']=this.value; updateResume();"></div>`).join('')}</div>`; }); document.getElementById(`${key}-ctrl`).innerHTML = html; }
+    function renderBlockControls(key) { let html = ''; RESUME_DATA[key].forEach((block, idx) => { html += `<div class="repeater-block">${renderItemActions(key, idx)}<div class="form-group"><label>Title / Role</label><input type="text" value="${escapeAttr(block.title)}" oninput="RESUME_DATA['${key}'][${idx}].title=this.value; updateResume();"></div><div class="form-group"><label>Timeline / Date</label><input type="text" value="${escapeAttr(block.date)}" oninput="RESUME_DATA['${key}'][${idx}].date=this.value; updateResume();"></div>${block.subtitle !== undefined ? `<div class="form-group"><label>Institution / Subtitle</label><input type="text" value="${escapeAttr(block.subtitle)}" oninput="RESUME_DATA['${key}'][${idx}].subtitle=this.value; updateResume();"></div>` : ''}<label>Bullet Points Descriptions</label><div id="${key}-${idx}-bullets">${block.bullets.map((b, bIdx) => `<div class="bullet-input-group"><input type="text" value="${escapeAttr(b)}" oninput="RESUME_DATA['${key}'][${idx}].bullets[${bIdx}]=this.value; updateResume();"><button class="btn-danger" style="float:none;" onclick="removeBullet('${key}', ${idx}, ${bIdx})">X</button></div>`).join('')}</div><button class="btn btn-secondary" style="font-size:7.5pt; padding:4px 8px;" onclick="addBullet('${key}', ${idx})">+ Add Bullet Line</button></div>`; }); document.getElementById(`${key}-ctrl`).innerHTML = html; }
+    function addItem(key) { RESUME_DATA[key].push(key === 'skills' ? {category: 'New Category', items: ''} : {title: 'New Entry', desc: 'Detail'}); setupDashboard(); }
+    function addBlockItem(key) { let newBlock = { title: "New Position", date: "Timeline", bullets: ["New line."] }; if (key !== 'projects') newBlock.subtitle = "Organization"; RESUME_DATA[key].push(newBlock); setupDashboard(); }
+    function removeItem(key, idx) { RESUME_DATA[key].splice(idx, 1); setupDashboard(); }
+    function moveItem(key, idx, direction) { const nextIdx = idx + direction; if (nextIdx < 0 || nextIdx >= RESUME_DATA[key].length) return; const [item] = RESUME_DATA[key].splice(idx, 1); RESUME_DATA[key].splice(nextIdx, 0, item); setupDashboard(); }
+    function addBullet(key, idx) { RESUME_DATA[key][idx].bullets.push("New line."); setupDashboard(); }
+    function removeBullet(key, idx, bIdx) { RESUME_DATA[key][idx].bullets.splice(bIdx, 1); setupDashboard(); }
+    function validateResume() {
+        const warnings = [];
+        if (!RESUME_DATA.name?.trim()) warnings.push('Full name is empty.');
+        if (!RESUME_DATA.title?.trim()) warnings.push('Professional title is empty.');
+        if (!RESUME_DATA.profile?.trim()) warnings.push('Profile summary is empty.');
+        if (RESUME_DATA.profile && RESUME_DATA.profile.length > 650) warnings.push('Profile summary is long; consider trimming it for a one-page CV.');
+        ['experience', 'projects', 'education'].forEach(key => {
+            if (!RESUME_DATA[key]?.length) warnings.push(`${key} section has no entries.`);
+            RESUME_DATA[key]?.forEach((item, idx) => {
+                if (!item.title?.trim()) warnings.push(`${key} entry ${idx + 1} has no title.`);
+                if (!item.bullets?.length) warnings.push(`${key} entry ${idx + 1} has no bullet points.`);
+            });
+        });
+        const panel = document.getElementById('validation-panel');
+        panel.classList.toggle('hidden', warnings.length === 0);
+        panel.innerHTML = warnings.length ? `<strong>Review before exporting</strong><ul>${warnings.map(warning => `<li>${escapeHtml(warning)}</li>`).join('')}</ul>` : '';
+    }
+    function updateResume() {
+        RESUME_DATA.name = document.getElementById('input-name').value;
+        RESUME_DATA.title = document.getElementById('input-title').value;
+        RESUME_DATA.profile = document.getElementById('input-profile').value;
+        document.getElementById('view-name').innerText = RESUME_DATA.name; document.getElementById('view-title').innerText = RESUME_DATA.title; document.getElementById('view-profile').innerText = RESUME_DATA.profile;
+        document.getElementById('view-contact').innerHTML = Object.entries(RESUME_DATA.contact).map(([k, v]) => `<div class="sidebar-label">${escapeHtml(k)}</div><div class="sidebar-value">${escapeHtml(v)}</div>`).join('');
+        document.getElementById('view-certs').innerHTML = RESUME_DATA.certifications.map(c => `<div class="sidebar-item"><div class="sidebar-item-title">${escapeHtml(c.title)}</div><div class="sidebar-item-desc">${escapeHtml(c.desc)}</div></div>`).join('');
+        document.getElementById('view-memberships').innerHTML = RESUME_DATA.memberships.map(m => `<div class="sidebar-item"><div class="sidebar-item-title">${escapeHtml(m.title)}</div><div class="sidebar-item-desc">${escapeHtml(m.desc)}</div></div>`).join('');
+        document.getElementById('view-skills').innerHTML = RESUME_DATA.skills.map(s => `<div class="skills-line"><span class="skills-tech">${escapeHtml(s.category)}:</span> ${escapeHtml(s.items)}</div>`).join('');
+        function build(arr) { return arr.map(b => `<div class="block-item"><div class="block-header"><div class="block-title">${escapeHtml(b.title)}</div><div class="block-date">${escapeHtml(b.date)}</div><div class="clear"></div></div>${b.subtitle ? `<div class="block-subtitle">${escapeHtml(b.subtitle)}</div>` : ''}<ul>${b.bullets.map(bullet => `<li>${escapeHtml(bullet)}</li>`).join('')}</ul></div>`).join(''); }
+        document.getElementById('view-experience').innerHTML = build(RESUME_DATA.experience); document.getElementById('view-projects').innerHTML = build(RESUME_DATA.projects); document.getElementById('view-education').innerHTML = build(RESUME_DATA.education);
+        validateResume();
+    }
+    window.addEventListener('load', async () => {
+        try {
+            await loadRouteData();
+            setupDashboard();
+            setDashboardMode(isDashboardHash());
+        } catch (error) {
+            showLoadError(error);
+        }
+    });
+
+    window.addEventListener('hashchange', async () => {
+        try {
+            await loadRouteData();
+            setupDashboard();
+            setDashboardMode(isDashboardHash());
+        } catch (error) {
+            showLoadError(error);
+        }
+    });
+</script>
+</body>
+</html>

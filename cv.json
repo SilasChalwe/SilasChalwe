@@ -1,0 +1,143 @@
+{
+    "name": "CHALWE SILAS",
+    "title": "Systems Architect & Computer Engineer",
+    "contact": {
+        "EMAIL": "mchalwesilas@gmail.com",
+        "LOCATION": "Kitwe, Copperbelt Province, Zambia",
+        "PHONE": "+260961538892",
+        "LINKEDIN": "linkedin.com/in/silas-chalwe",
+        "GITHUB": "github.com/SilasChalwe"
+    },
+    "certifications": [
+        {
+            "title": "Advanced C++ Programming",
+            "desc": "Cisco Networking Academy"
+        },
+        {
+            "title": "Python Essentials",
+            "desc": "Cisco Networking Academy"
+        },
+        {
+            "title": "Professional in Marketing Fundamentals",
+            "desc": "LinkedIn Marketing Labs, valid Oct 1, 2025 - Oct 1, 2027"
+        },
+        {
+            "title": "Youth TeamUp-Programme",
+            "desc": "Certificate of Attendance, Voice-Assisted Digital Platform for Farmers"
+        }
+    ],
+    "memberships": [
+        {
+            "title": "Professional Member",
+            "desc": "ICT Association of Zambia (ICTAZ)"
+        },
+        {
+            "title": "Recognized Member",
+            "desc": "ICTAZ - The Copperbelt University Chapter, 2024-25 academic year"
+        }
+    ],
+    "profile": "Computer Engineering specialist focused on embedded systems, backend architecture, automation, and applied AI. Experienced in building secure APIs, data ingestion workflows, mobile applications, and localized speech technology. Combines hands-on hardware knowledge with practical software delivery, technical support, and systems thinking.",
+    "skills": [
+        {
+            "category": "Hardware",
+            "items": "Embedded Systems, IoT Architecture, ESP32, Circuit Design"
+        },
+        {
+            "category": "Backend",
+            "items": "Spring Boot, REST APIs, Microservices, JWT Authentication"
+        },
+        {
+            "category": "Languages",
+            "items": "C, C++, Python, Java, SQL, Flutter, React Native"
+        },
+        {
+            "category": "Data & AI",
+            "items": "OpenAI Whisper Fine-Tuning, PyTorch, Web Scraping, Data Ingestion"
+        },
+        {
+            "category": "Platforms",
+            "items": "Ubuntu/Linux Administration, Git, Postman, Expo Go"
+        }
+    ],
+    "experience": [
+        {
+            "title": "Founder & Chief Executive Officer",
+            "date": "Nov 2025 – Present",
+            "subtitle": "Covian Hive Technologies",
+            "bullets": [
+                "Leads development of custom software, technical support workflows, and systems integration projects.",
+                "Designs secure backend services, database structures, and deployment processes for client-facing solutions.",
+                "Coordinates project planning, implementation, and quality checks across hardware, software, and network tasks."
+            ]
+        },
+        {
+            "title": "Lead Integration Specialist (Contractor)",
+            "date": "2024 – Present",
+            "subtitle": "International Freelance Engineering",
+            "bullets": [
+                "Built automated web-scraping and data ingestion workflows for Hawking SRL in Italy within a 10-day delivery sprint.",
+                "Developed API endpoints and server scripts to support stable cross-border software infrastructure."
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "title": "Mfocus Student Time Management App",
+            "date": "Android Development",
+            "bullets": [
+                "Built a cross-platform student productivity app with React Native and Expo Go, focused on time management and study planning."
+            ]
+        },
+        {
+            "title": "ASPECT Multimodal Agri-Tech Platform",
+            "date": "Youth TeamUp",
+            "bullets": [
+                "Collaborated on a voice-assisted digital platform for farmers during the Youth TeamUp-Programme, focusing on accessible agricultural support."
+            ]
+        },
+        {
+            "title": "Bemba Speech-to-Text Engine",
+            "date": "Research Focus",
+            "bullets": [
+                "Fine-tuned OpenAI Whisper models with PyTorch for Bemba speech-to-text transcription in a low-resource language context."
+            ]
+        }
+    ],
+    "education": [
+        {
+            "title": "Bachelor of Computer Engineering",
+            "date": "2022 - Present",
+            "subtitle": "The Copperbelt University (CBU), School of Information and Communication Technology",
+            "bullets": [
+                "Currently pursuing the degree programme in the School of Information and Communication Technology.",
+                "2022 Academic Year (Year 1): Clear Pass.",
+                "2023 Academic Year (Year 2): Proceed and Repeat a course.",
+                "2024 Academic Year (Year 3): Clear Pass."
+            ]
+        },
+        {
+            "title": "School Certificate",
+            "date": "November 2020",
+            "subtitle": "Examinations Council of Zambia",
+            "bullets": [
+                "Awarded based on the November 2020 examinations."
+            ]
+        },
+        {
+            "title": "Junior Secondary School Leaving Certificate",
+            "date": "2017",
+            "subtitle": "Secondary Education",
+            "bullets": [
+                "Completed junior secondary education."
+            ]
+        },
+        {
+            "title": "Grade 7 Certificate",
+            "date": "2015",
+            "subtitle": "Primary Education",
+            "bullets": [
+                "Awarded Division ONE."
+            ]
+        }
+    ]
+}
