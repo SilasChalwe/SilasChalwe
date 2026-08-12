@@ -1,19 +1,15 @@
 <div align="center">
 
   <!-- Animated Wave Header -->
-
-  <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:001F3F,100:FF8C00&height=180&section=header&text=Silas%20Chalwe&fontSize=70&fontColor=FFFFFF&animation=twinkling&fontAlignY=32&desc=Final-Year%20Computer%20Engineering%20Student%20|%20Software%20%26%20Embedded%20Systems&descAlignY=51&descAlign=50" />
+  <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:001F3F,100:FF8C00&height=181&section=header&text=Silas%20Chalwe&fontSize=70&fontColor=FFFFFF&animation=twinkling&fontAlignY=32&desc=Final-Year%20Computer%20Engineering%20Student%20%7C%20Software%20%26%20Embedded%20Systems&descAlignY=51&descAlign=50" />
 
   <!-- Typing Animation -->
-
   <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=25&duration=3000&pause=1000&color=FF8C00&center=true&vCenter=true&multiline=false&width=600&lines=Building+Practical+Software;Bridging+Hardware+%26+Software;Learning+Through+Real+Projects" alt="Typing SVG" />
 
   <!-- Social Badges (all in one place) -->
-
   <p align="center">
     <a href="mailto:mchalwesilas@gmail.com"><img src="https://img.shields.io/badge/-Email-001F3F?style=for-the-badge&logo=gmail&logoColor=FF8C00" /></a>
     <a href="https://www.linkedin.com/in/silas-chalwe-2085a5414"><img src="https://img.shields.io/badge/-LinkedIn-001F3F?style=for-the-badge&logo=linkedin&logoColor=FF8C00" /></a>
-    <a href="https://twitter.com/silas_chalwe"><img src="https://img.shields.io/badge/-Twitter-001F3F?style=for-the-badge&logo=x&logoColor=FF8C00" /></a>
     <a href="https://github.com/SilasChalwe"><img src="https://img.shields.io/badge/-GitHub-001F3F?style=for-the-badge&logo=github&logoColor=FF8C00" /></a>
     <img src="https://komarev.com/ghpvc/?username=SilasChalwe&style=for-the-badge&color=FF8C00" alt="Profile Views" />
   </p>
@@ -21,7 +17,7 @@
 
 <img width="100%" style="margin: 14px 0;" src="https://capsule-render.vercel.app/api?type=rect&color=FF8C00&height=6&section=header&animation=twinkling" />
 
-<img src="https://img.icons8.com/fluency-systems-filled/20/FF8C00/user.png" alt="About Icon" /> <img src="https://img.shields.io/badge/About%20Me-001F3F?style=for-the-badge&logoColor=FF8C00" alt="About Me" />
+## <img src="https://img.icons8.com/fluency-systems-filled/20/FF8C00/user.png" alt="About Icon" /> <img src="https://img.shields.io/badge/About%20Me-001F3F?style=for-the-badge&logoColor=FF8C00" alt="About Me" />
 
 <p align="center">
   <img src="https://img.shields.io/badge/Final--Year%20Computer%20Engineering%20Student-001F3F?style=for-the-badge&logoColor=FF8C00" alt="Final-Year Computer Engineering Student" />
@@ -36,7 +32,7 @@
   <img src="https://img.shields.io/badge/Interests-Backend%20Development%20%7C%20Embedded%20Systems%20%7C%20IoT%20%7C%20Computer%20Vision-001F3F?style=flat-square&labelColor=001F3F&color=FF8C00" alt="Interests" />
 </p>
 
-<img src="https://img.shields.io/badge/Profile%20Highlights-001F3F?style=flat-square&logoColor=FF8C00" alt="Profile Highlights" />
+### <img src="https://img.shields.io/badge/Profile%20Highlights-001F3F?style=flat-square&logoColor=FF8C00" alt="Profile Highlights" />
 
 <div align="center" style="width:100%;">
   <table bgcolor="#001F3F" width="100%">
@@ -65,7 +61,7 @@
 
 <img width="100%" style="margin: 14px 0;" src="https://capsule-render.vercel.app/api?type=rect&color=001F3F&height=6&section=header&animation=twinkling" />
 
-<img src="https://img.icons8.com/fluency-systems-filled/20/FF8C00/handshake.png" alt="Collaborate Icon" /> <img src="https://img.shields.io/badge/Collaborate%20with%20Me-001F3F?style=for-the-badge&logoColor=FF8C00" alt="Collaborate with Me" />
+## <img src="https://img.icons8.com/fluency-systems-filled/20/FF8C00/handshake.png" alt="Collaborate Icon" /> <img src="https://img.shields.io/badge/Collaborate%20with%20Me-001F3F?style=for-the-badge&logoColor=FF8C00" alt="Collaborate with Me" />
 
 <p align="center">
   <img src="https://img.shields.io/badge/Teamwork%20%7C%20Hackathons%20%7C%20Open%20Innovation-001F3F?style=for-the-badge&logoColor=FF8C00" alt="Teamwork Hackathons Open Innovation" />
@@ -87,9 +83,9 @@
 
 <img width="100%" style="margin: 14px 0;" src="https://capsule-render.vercel.app/api?type=rect&color=FF8C00&height=6&section=header&animation=twinkling" />
 
-<img src="https://img.icons8.com/fluency-systems-filled/20/FF8C00/services.png" alt="Skills Icon" /> <img src="https://img.shields.io/badge/Skills%20%26%20Technologies-001F3F?style=for-the-badge&logoColor=FF8C00" alt="Skills and Technologies" />
+## <img src="https://img.icons8.com/fluency-systems-filled/20/FF8C00/services.png" alt="Skills Icon" /> <img src="https://img.shields.io/badge/Skills%20%26%20Technologies-001F3F?style=for-the-badge&logoColor=FF8C00" alt="Skills and Technologies" />
 
-<img src="https://img.shields.io/badge/Skill%20Matrix-001F3F?style=flat-square&logoColor=FF8C00" alt="Skill Matrix" />
+### <img src="https://img.shields.io/badge/Skill%20Matrix-001F3F?style=flat-square&logoColor=FF8C00" alt="Skill Matrix" />
 
 <div align="center">
   <table bgcolor="#001F3F">
@@ -120,7 +116,7 @@
   </table>
 </div>
 
-<img src="https://img.shields.io/badge/Leadership%20%26%20Workshops-001F3F?style=flat-square&logoColor=FF8C00" alt="Leadership and Workshops" />
+### <img src="https://img.shields.io/badge/Leadership%20%26%20Workshops-001F3F?style=flat-square&logoColor=FF8C00" alt="Leadership and Workshops" />
 
 <div align="center">
   <table bgcolor="#001F3F">
@@ -169,7 +165,7 @@
 
 <img width="100%" style="margin: 14px 0;" src="https://capsule-render.vercel.app/api?type=rect&color=001F3F&height=6&section=header&animation=twinkling" />
 
-<img src="https://img.icons8.com/fluency-systems-filled/20/FF8C00/combo-chart.png" alt="Metrics Icon" /> <img src="https://img.shields.io/badge/Performance%20Metrics-001F3F?style=for-the-badge&logoColor=FF8C00" alt="Performance Metrics" />
+## <img src="https://img.icons8.com/fluency-systems-filled/20/FF8C00/combo-chart.png" alt="Metrics Icon" /> <img src="https://img.shields.io/badge/Performance%20Metrics-001F3F?style=for-the-badge&logoColor=FF8C00" alt="Performance Metrics" />
 
 <div align="center">
   <img width="49%" height="195px" src="https://github-readme-stats.vercel.app/api?username=SilasChalwe&show_icons=true&count_private=true&hide_border=true&title_color=FF8C00&icon_color=FF8C00&text_color=FF8C00&bg_color=001F3F" alt="github stats" />
@@ -180,7 +176,7 @@
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=SilasChalwe&hide_border=true&stroke=001F3F&background=001F3F&ring=FF8C00&fire=FF8C00&currStreakLabel=FF8C00&sideNums=FF8C00&sideLabels=FF8C00&dates=FF8C00" />
 </div>
 
-<img src="https://img.icons8.com/fluency-systems-filled/20/FF8C00/activity-history.png" alt="Graph Icon" /> <img src="https://img.shields.io/badge/Contribution%20Graph-001F3F?style=for-the-badge&logoColor=FF8C00" alt="Contribution Graph" />
+## <img src="https://img.icons8.com/fluency-systems-filled/20/FF8C00/activity-history.png" alt="Graph Icon" /> <img src="https://img.shields.io/badge/Contribution%20Graph-001F3F?style=for-the-badge&logoColor=FF8C00" alt="Contribution Graph" />
 
 <div align="center">
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=SilasChalwe&bg_color=001F3F&color=FF8C00&line=FF8C00&point=FF8C00&area=true&hide_border=true" alt="Contribution Graph" />
@@ -188,7 +184,7 @@
 
 <img width="100%" style="margin: 14px 0;" src="https://capsule-render.vercel.app/api?type=rect&color=FF8C00&height=6&section=header&animation=twinkling" />
 
-<img src="https://img.icons8.com/fluency-systems-filled/20/FF8C00/source-code.png" alt="Projects Icon" /> <img src="https://img.shields.io/badge/Featured%20Projects-001F3F?style=for-the-badge&logoColor=FF8C00" alt="Featured Projects" />
+## <img src="https://img.icons8.com/fluency-systems-filled/20/FF8C00/source-code.png" alt="Projects Icon" /> <img src="https://img.shields.io/badge/Featured%20Projects-001F3F?style=for-the-badge&logoColor=FF8C00" alt="Featured Projects" />
 
 <p align="center">
   <a href="https://github.com/SilasChalwe?tab=repositories&q=&type=public&sort=updated">
@@ -257,7 +253,7 @@
   </tr>
 </table>
 
-<img src="https://img.shields.io/badge/Selected%20Public%20Repositories-001F3F?style=flat-square&logoColor=FF8C00" alt="Selected Public Repositories" />
+### <img src="https://img.shields.io/badge/Selected%20Public%20Repositories-001F3F?style=flat-square&logoColor=FF8C00" alt="Selected Public Repositories" />
 
 <div align="center">
   <table bgcolor="#001F3F">
@@ -279,7 +275,7 @@
 
 <img width="100%" style="margin: 14px 0;" src="https://capsule-render.vercel.app/api?type=rect&color=001F3F&height=6&section=header&animation=twinkling" />
 
-<img src="https://img.icons8.com/fluency-systems-filled/20/FF8C00/prize.png" alt="Achievements Icon" /> <img src="https://img.shields.io/badge/Achievements%20%26%20Certifications-001F3F?style=for-the-badge&logoColor=FF8C00" alt="Achievements and Certifications" />
+## <img src="https://img.icons8.com/fluency-systems-filled/20/FF8C00/prize.png" alt="Achievements Icon" /> <img src="https://img.shields.io/badge/Achievements%20%26%20Certifications-001F3F?style=for-the-badge&logoColor=FF8C00" alt="Achievements and Certifications" />
 
 <div align="center">
   <table bgcolor="#001F3F">
@@ -329,6 +325,4 @@
 <img width="100%" style="margin: 14px 0;" src="https://capsule-render.vercel.app/api?type=rect&color=FF8C00&height=6&section=header&animation=twinkling" />
 
 <!-- Footer Wave -->
-
 <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:001F3F,100:FF8C00&height=100&section=footer&animation=twinkling" />
-
