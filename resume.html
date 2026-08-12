@@ -1,351 +1,682 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<title>CHALWE SILAS - Resume Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Silas Chalwe - Resume</title>
 <style>
-    body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f0f2f5; display: flex; }
-    #dashboard-panel { width: 42%; height: 100vh; background-color: #ffffff; box-shadow: 2px 0 10px rgba(0,0,0,0.1); overflow-y: auto; padding: 20px; box-sizing: border-box; }
-    #preview-panel { width: 100%; height: 100vh; overflow-y: auto; padding: 40px 20px; box-sizing: border-box; display: flex; justify-content: center; }
-    body.dashboard-mode #preview-panel { width: 58%; }
-    body.compact-resume .sidebar { padding-top: 22px; padding-bottom: 22px; }
-    body.compact-resume .main-content { padding-top: 22px; padding-bottom: 22px; }
-    body.compact-resume .main-section-title { margin-top: 10px; margin-bottom: 6px; }
-    body.compact-resume .block-item { margin-bottom: 7px; }
-    body.compact-resume li, body.compact-resume .profile-text, body.compact-resume .skills-line { font-size: 8pt; }
-    .hidden { display: none !important; }
-    h2 { color: #1a252c; border-bottom: 2px solid #00a0df; padding-bottom: 5px; margin-top: 0; font-size: 14pt;}
-    h3 { color: #00a0df; font-size: 10pt; margin-bottom: 5px; margin-top: 15px; text-transform: uppercase;}
-    .form-group { margin-bottom: 12px; }
-    label { display: block; font-size: 8pt; font-weight: bold; color: #4a5568; margin-bottom: 4px; text-transform: uppercase;}
-    input[type="text"], textarea { width: 100%; padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 9pt; box-sizing: border-box; font-family: inherit; }
-    textarea { height: 70px; resize: vertical; }
-    .repeater-block { background: #f7fafc; border: 1px solid #e2e8f0; padding: 10px; border-radius: 4px; margin-bottom: 10px; position: relative; }
-    .btn { background-color: #00a0df; color: white; border: none; padding: 6px 12px; font-size: 8.5pt; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 5px; }
-    .btn-secondary { background-color: #4a5568; }
-    .btn-print { background-color: #2b6cb0; }
-    .btn-danger { background-color: #e53e3e; font-size: 7.5pt; padding: 3px 6px; margin-top: 0;}
-    .btn-mini { background-color: #edf2f7; color: #1a252c; border: 1px solid #cbd5e0; padding: 3px 7px; font-size: 7.5pt; }
-    .btn-save { background-color: #38a169 !important; width: 100%; padding: 10px; margin-top: 10px; }
-    .dashboard-toolbar { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 12px; }
-    .dashboard-toolbar .btn { width: 100%; margin-top: 0; padding: 9px 8px; }
-    .mode-tabs { display: flex; flex-wrap: wrap; gap: 5px; margin: 10px 0 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; }
-    .tab-btn { background: #edf2f7; color: #1a252c; border: 1px solid #cbd5e0; border-radius: 4px; padding: 6px 8px; font-size: 8pt; font-weight: bold; cursor: pointer; }
-    .tab-btn.active { background: #00a0df; border-color: #00a0df; color: #ffffff; }
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
-    .panel-note { color: #718096; font-size: 8pt; margin: 2px 0 10px; }
-    .item-actions { display: flex; justify-content: flex-end; gap: 4px; margin-bottom: 8px; }
-    .validation-panel { background: #fffaf0; border: 1px solid #f6ad55; color: #744210; border-radius: 4px; padding: 8px 10px; font-size: 8pt; margin-bottom: 10px; }
-    .validation-panel strong { display: block; margin-bottom: 4px; }
-    .validation-panel ul { color: #744210; margin-top: 0; padding-left: 16px; }
-    .toggle-row { display: flex; align-items: center; gap: 7px; font-size: 8pt; color: #4a5568; margin: 8px 0 12px; }
-    .bullet-input-group { display: flex; margin-bottom: 4px; }
-    .bullet-input-group input { flex-grow: 1; margin-right: 4px; }
-    .a4-page { width: 210mm; min-height: 297mm; background-color: #ffffff; box-shadow: 0 4px 20px rgba(0,0,0,0.15); box-sizing: border-box; }
-    .resume-table { width: 100%; border-collapse: collapse; min-height: 297mm; }
-    .sidebar { width: 34%; background-color: #1a252c !important; color: #ffffff; vertical-align: top; padding: 30px 16px; }
-    .main-content { width: 66%; vertical-align: top; padding: 30px 25px; background-color: #ffffff; }
-    .name-heading { font-size: 19pt; font-weight: bold; color: #00a0df; text-transform: uppercase; margin: 0 0 6px 0; letter-spacing: 0.5px; text-align: center; }
-    .title-subheading { font-size: 9.5pt; font-weight: bold; color: #ffffff; text-align: center; margin-bottom: 20px; white-space: nowrap; }
-    .sidebar-section-title { font-size: 10pt; font-weight: bold; color: #00a0df; text-transform: uppercase; border-bottom: 1px solid #2d3d4a; padding-bottom: 3px; margin-top: 18px; margin-bottom: 10px; letter-spacing: 0.5px; }
-    .sidebar-label { font-size: 7pt; text-transform: uppercase; color: #00a0df; font-weight: bold; margin-top: 8px; margin-bottom: 1px; }
-    .sidebar-value { font-size: 8.5pt; color: #e2e8f0; margin-bottom: 6px; word-break: break-all; }
-    .sidebar-item { margin-bottom: 10px; }
-    .sidebar-item-title { font-weight: bold; font-size: 8.5pt; color: #ffffff; }
-    .sidebar-item-desc { font-size: 8pt; color: #a0aec0; }
-    .main-section-title { font-size: 11pt; font-weight: bold; color: #1a252c; text-transform: uppercase; margin-top: 15px; margin-bottom: 8px; border-left: 3px solid #00a0df; padding-left: 8px; letter-spacing: 0.5px; }
-    .profile-text { color: #4a5568; font-size: 8.5pt; text-align: justify; margin-bottom: 10px; }
-    .skills-line { font-size: 8.5pt; margin-bottom: 4px; color: #4a5568; }
-    .skills-tech { color: #00a0df; font-weight: bold; }
-    .block-item { margin-bottom: 10px; }
-    .block-header { position: relative; margin-bottom: 2px; }
-    .block-title { font-weight: bold; font-size: 9.5pt; color: #1a252c; float: left; }
-    .block-date { float: right; color: #718096; font-size: 8.5pt; }
-    .block-subtitle { font-weight: 600; color: #00a0df; font-size: 9pt; margin-bottom: 2px; }
-    .clear { clear: both; }
-    ul { margin: 2px 0 0 0; padding-left: 14px; color: #4a5568; }
-    li { margin-bottom: 2px; text-align: justify; font-size: 8.5pt; }
-    @media print {
-        @page { margin: 0; }
-        #dashboard-panel { display: none !important; }
-        #preview-panel { width: 100% !important; padding: 0 !important; margin: 0 !important; display: block !important; }
-        body { background-color: #ffffff !important; }
-        .a4-page { box-shadow: none !important; }
-        .sidebar { background-color: #1a252c !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    }
+:root{
+  --ink:#1a252c;
+  --blue:#00a0df;
+  --blue-dark:#1676a5;
+  --muted:#5f6b76;
+  --light:#f4f7f9;
+  --line:#dce3e8;
+  --white:#ffffff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  background:#e9edf1;
+  color:var(--ink);
+}
+button,input,textarea{font:inherit}
+.hidden{display:none!important}
+
+/* Screen toolbar - hidden when printing */
+.screen-toolbar{
+  position:sticky; top:0; z-index:50;
+  display:flex; justify-content:center; gap:8px;
+  padding:10px 14px;
+  background:rgba(26,37,44,.96);
+  box-shadow:0 2px 12px rgba(0,0,0,.15);
+}
+.screen-toolbar button{
+  border:0; border-radius:5px; padding:8px 13px;
+  cursor:pointer; font-weight:700; font-size:9pt;
+}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-secondary{background:#fff;color:var(--ink)}
+.btn-save{background:#38a169;color:#fff}
+
+.workspace{
+  display:flex;
+  align-items:flex-start;
+}
+.editor{
+  width:390px;
+  min-width:390px;
+  height:calc(100vh - 50px);
+  overflow:auto;
+  background:#fff;
+  border-right:1px solid #d9e0e5;
+  padding:18px;
+}
+.preview{
+  flex:1;
+  min-width:0;
+  padding:28px 16px 50px;
+}
+.editor h2{
+  margin:0 0 6px;
+  font-size:15pt;
+  color:var(--ink);
+}
+.editor .note{
+  color:#718096;
+  font-size:8pt;
+  margin:0 0 14px;
+}
+.editor h3{
+  margin:18px 0 8px;
+  color:var(--blue-dark);
+  font-size:9pt;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  border-bottom:1px solid var(--line);
+  padding-bottom:4px;
+}
+.form-group{margin-bottom:10px}
+label{
+  display:block;
+  margin-bottom:3px;
+  color:#4a5568;
+  font-size:7.5pt;
+  font-weight:700;
+  text-transform:uppercase;
+}
+input[type="text"], textarea{
+  width:100%;
+  border:1px solid #cbd5e0;
+  border-radius:4px;
+  padding:7px 8px;
+  font-size:8.5pt;
+  color:var(--ink);
+}
+textarea{min-height:68px;resize:vertical}
+.editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.editor-card{
+  border:1px solid var(--line);
+  border-radius:5px;
+  background:#f8fafb;
+  padding:8px;
+  margin-bottom:8px;
+}
+.editor-card-title{
+  font-size:8pt;
+  font-weight:800;
+  margin-bottom:7px;
+  color:var(--ink);
+}
+.editor-actions{
+  display:flex;
+  gap:5px;
+  margin-top:5px;
+}
+.small-btn{
+  border:0;
+  border-radius:4px;
+  background:#dfe7ec;
+  color:var(--ink);
+  padding:4px 7px;
+  font-size:7pt;
+  cursor:pointer;
+}
+.small-btn.danger{background:#fee2e2;color:#a61b1b}
+
+/* A4 resume */
+.a4-page{
+  width:210mm;
+  min-height:297mm;
+  margin:0 auto 18px;
+  background:#fff;
+  box-shadow:0 4px 20px rgba(0,0,0,.16);
+  display:grid;
+  grid-template-columns:34% 66%;
+  overflow:hidden;
+}
+.sidebar{
+  background:var(--ink);
+  color:#fff;
+  padding:26px 16px;
+}
+.main{
+  background:#fff;
+  padding:26px 25px;
+}
+.name{
+  margin:0;
+  color:var(--blue);
+  text-align:center;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  font-size:19pt;
+  line-height:1.1;
+}
+.role{
+  text-align:center;
+  font-size:9pt;
+  line-height:1.35;
+  margin:7px 0 20px;
+  font-weight:700;
+  color:#fff;
+}
+.side-title{
+  color:var(--blue);
+  margin:17px 0 8px;
+  font-size:9.5pt;
+  font-weight:800;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  border-bottom:1px solid #31424d;
+  padding-bottom:4px;
+}
+.side-label{
+  color:var(--blue);
+  font-size:6.8pt;
+  font-weight:800;
+  text-transform:uppercase;
+  margin-top:7px;
+}
+.side-value{
+  color:#e7edf1;
+  font-size:8.2pt;
+  line-height:1.35;
+  word-break:break-word;
+}
+.side-item{margin-bottom:9px}
+.side-item strong{
+  display:block;
+  font-size:8.2pt;
+  line-height:1.25;
+}
+.side-item span{
+  display:block;
+  margin-top:1px;
+  color:#aeb9c1;
+  font-size:7.6pt;
+  line-height:1.35;
+}
+.main-title{
+  margin:13px 0 7px;
+  padding-left:8px;
+  border-left:3px solid var(--blue);
+  font-size:10.5pt;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+}
+.main-title.first{margin-top:0}
+.profile{
+  margin:0 0 8px;
+  color:#4a5568;
+  font-size:8.5pt;
+  line-height:1.52;
+  text-align:justify;
+}
+.skill-line{
+  margin:0 0 4px;
+  color:#4a5568;
+  font-size:8.2pt;
+  line-height:1.35;
+}
+.skill-line strong{color:var(--blue-dark)}
+.block{margin-bottom:9px}
+.block-head{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:baseline;
+}
+.block-title{
+  font-size:9.2pt;
+  font-weight:800;
+}
+.block-date{
+  color:#718096;
+  font-size:7.8pt;
+  white-space:nowrap;
+}
+.block-sub{
+  color:var(--blue-dark);
+  font-weight:700;
+  font-size:8.3pt;
+  margin:1px 0 2px;
+}
+ul{
+  margin:2px 0 0;
+  padding-left:14px;
+}
+li{
+  margin:0 0 2px;
+  color:#4a5568;
+  font-size:8pt;
+  line-height:1.4;
+  text-align:justify;
+}
+.page-two .sidebar{
+  padding-top:28px;
+}
+.page-two .main{
+  padding-top:28px;
+}
+
+/* Compact only for screen if needed */
+body.compact .sidebar{padding-top:20px;padding-bottom:20px}
+body.compact .main{padding-top:20px;padding-bottom:20px}
+body.compact .main-title{margin-top:9px;margin-bottom:5px}
+body.compact .block{margin-bottom:6px}
+body.compact li, body.compact .profile, body.compact .skill-line{font-size:7.7pt}
+
+@media(max-width:1050px){
+  .editor{width:340px;min-width:340px}
+  .preview{overflow:auto}
+}
+@media(max-width:820px){
+  .workspace{display:block}
+  .editor{
+    width:100%;min-width:0;height:auto;
+    border-right:0;border-bottom:1px solid var(--line);
+  }
+  .preview{padding:18px 8px 40px;overflow:auto}
+  .a4-page{transform-origin:top left}
+}
+@media print{
+  @page{size:A4;margin:0}
+  body{background:#fff}
+  .screen-toolbar,.editor{display:none!important}
+  .workspace,.preview{display:block!important;padding:0!important;margin:0!important}
+  .a4-page{
+    box-shadow:none!important;
+    margin:0!important;
+    page-break-after:always;
+    break-after:page;
+  }
+  .a4-page:last-child{page-break-after:auto;break-after:auto}
+  .sidebar{
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+    background:var(--ink)!important;
+  }
+}
 </style>
 </head>
 <body>
-<div id="dashboard-panel" class="hidden">
-    <h2>CV Content Management Dashboard</h2>
-    <p id="data-source-label" class="panel-note">Reusable template mode</p>
-    <div class="dashboard-toolbar">
-        <button class="btn btn-secondary" onclick="toggleDashboard()">CV View</button>
-        <button class="btn btn-print" onclick="printResume()">Print / PDF</button>
-        <button id="export-btn" class="btn btn-save" onclick="saveData()">Export Template JSON</button>
-        <button class="btn btn-secondary" onclick="reloadResumeData()">Reload JSON</button>
-    </div>
-    <label class="toggle-row"><input type="checkbox" id="compact-toggle" onchange="setCompactMode(this.checked)"> Compact print spacing</label>
-    <div id="validation-panel" class="validation-panel hidden"></div>
-    <div class="mode-tabs">
-        <button class="tab-btn active" data-tab="profile" onclick="showTab('profile')">Profile</button>
-        <button class="tab-btn" data-tab="sidebar" onclick="showTab('sidebar')">Sidebar</button>
-        <button class="tab-btn" data-tab="skills" onclick="showTab('skills')">Skills</button>
-        <button class="tab-btn" data-tab="experience" onclick="showTab('experience')">Experience</button>
-        <button class="tab-btn" data-tab="projects" onclick="showTab('projects')">Projects</button>
-        <button class="tab-btn" data-tab="education" onclick="showTab('education')">Education</button>
-    </div>
-    <section class="tab-panel active" data-panel="profile">
-        <h3>Header Data</h3>
-        <div class="form-group"><label>Full Name</label><input type="text" id="input-name" oninput="updateResume()"></div>
-        <div class="form-group"><label>Professional Title</label><input type="text" id="input-title" oninput="updateResume()"></div>
-        <h3>Professional Profile</h3>
-        <p class="panel-note">Keep this short enough to scan in five seconds.</p>
-        <div class="form-group"><label>Profile Summary</label><textarea id="input-profile" oninput="updateResume()"></textarea></div>
-    </section>
-    <section class="tab-panel" data-panel="sidebar">
-        <h3>Contact Information</h3><div id="contact-fields"></div>
-        <h3>Certifications & Training</h3><div id="certifications-ctrl"></div><button class="btn" onclick="addItem('certifications')">+ Add Certification</button>
-        <h3>Memberships</h3><div id="memberships-ctrl"></div><button class="btn" onclick="addItem('memberships')">+ Add Membership</button>
-    </section>
-    <section class="tab-panel" data-panel="skills">
-        <h3>Technical Skills</h3><div id="skills-ctrl"></div><button class="btn" onclick="addItem('skills')">+ Add Skill Category</button>
-    </section>
-    <section class="tab-panel" data-panel="experience">
-        <h3>Engineering Experience</h3><div id="experience-ctrl"></div><button class="btn" onclick="addBlockItem('experience')">+ Add Experience</button>
-    </section>
-    <section class="tab-panel" data-panel="projects">
-        <h3>Selected Tech Projects</h3><div id="projects-ctrl"></div><button class="btn" onclick="addBlockItem('projects')">+ Add Project</button>
-    </section>
-    <section class="tab-panel" data-panel="education">
-        <h3>Education & Leadership</h3><div id="education-ctrl"></div><button class="btn" onclick="addBlockItem('education')">+ Add Education Entry</button>
-    </section>
+
+<div class="screen-toolbar">
+  <button class="btn-secondary" id="editBtn" onclick="toggleEditor()">Edit my CV</button>
+  <button class="btn-primary" onclick="window.print()">Print / Save PDF</button>
+  <button class="btn-secondary" onclick="toggleCompact()">Compact spacing</button>
+  <button class="btn-save" onclick="downloadResumeData()">Back up my CV data</button>
 </div>
-<div id="preview-panel">
-    <div class="a4-page">
-        <table class="resume-table">
-            <tr>
-                <td class="sidebar">
-                    <div id="view-name" class="name-heading"></div>
-                    <div id="view-title" class="title-subheading"></div>
-                    <div class="sidebar-section-title">CONTACT</div><div id="view-contact"></div>
-                    <div class="sidebar-section-title">CERTIFICATIONS & TRAINING</div><div id="view-certs"></div>
-                    <div class="sidebar-section-title">MEMBERSHIPS</div><div id="view-memberships"></div>
-                </td>
-                <td class="main-content">
-                    <div class="main-section-title" style="margin-top: 0;">PROFESSIONAL PROFILE</div>
-                    <p id="view-profile" class="profile-text"></p>
-                    <div class="main-section-title">TECHNICAL SKILLS</div><div id="view-skills"></div>
-                    <div class="main-section-title">ENGINEERING EXPERIENCE</div><div id="view-experience"></div>
-                    <div class="main-section-title">SELECTED TECH PROJECTS</div><div id="view-projects"></div>
-                    <div class="main-section-title">EDUCATION & LEADERSHIP</div><div id="view-education"></div>
-                </td>
-            </tr>
-        </table>
+
+<div class="workspace">
+  <aside id="editor" class="editor hidden">
+    <h2>Silas Chalwe CV Editor</h2>
+    <p class="note">This file is personal to you. There is no reusable-template mode, placeholder applicant, or external cv.json dependency.</p>
+
+    <h3>Profile</h3>
+    <div class="form-group"><label>Full name</label><input id="f-name" type="text"></div>
+    <div class="form-group"><label>Professional title</label><input id="f-title" type="text"></div>
+    <div class="form-group"><label>Professional summary</label><textarea id="f-profile"></textarea></div>
+
+    <h3>Contact</h3>
+    <div class="editor-grid">
+      <div class="form-group"><label>Email</label><input id="f-email" type="text"></div>
+      <div class="form-group"><label>Phone</label><input id="f-phone" type="text"></div>
     </div>
+    <div class="form-group"><label>Location</label><input id="f-location" type="text"></div>
+    <div class="form-group"><label>GitHub</label><input id="f-github" type="text"></div>
+    <div class="form-group"><label>LinkedIn</label><input id="f-linkedin" type="text"></div>
+
+    <h3>Experience</h3>
+    <div id="experience-editor"></div>
+
+    <h3>Projects</h3>
+    <div id="projects-editor"></div>
+
+    <h3>Education</h3>
+    <div id="education-editor"></div>
+  </aside>
+
+  <main class="preview">
+    <section class="a4-page page-one">
+      <aside class="sidebar">
+        <h1 id="v-name" class="name"></h1>
+        <div id="v-title" class="role"></div>
+
+        <div class="side-title">Contact</div>
+        <div id="v-contact"></div>
+
+        <div class="side-title">Education</div>
+        <div id="v-education-side"></div>
+
+        <div class="side-title">Certifications & Training</div>
+        <div id="v-certs"></div>
+
+        <div class="side-title">Languages</div>
+        <div class="side-item"><strong>English</strong><span>Professional working language</span></div>
+        <div class="side-item"><strong>Bemba</strong><span>Native / fluent use</span></div>
+      </aside>
+
+      <div class="main">
+        <div class="main-title first">Professional Profile</div>
+        <p id="v-profile" class="profile"></p>
+
+        <div class="main-title">Technical Skills</div>
+        <div id="v-skills"></div>
+
+        <div class="main-title">Professional Experience</div>
+        <div id="v-experience"></div>
+
+        <div class="main-title">Selected Projects</div>
+        <div id="v-projects-one"></div>
+      </div>
+    </section>
+
+    <section class="a4-page page-two">
+      <aside class="sidebar">
+        <div class="side-title" style="margin-top:0">Relevant Coursework</div>
+        <div id="v-coursework"></div>
+
+        <div class="side-title">Activities & Participation</div>
+        <div id="v-activities"></div>
+
+        <div class="side-title">Professional Links</div>
+        <div class="side-item"><strong>GitHub</strong><span>github.com/SilasChalwe</span></div>
+        <div class="side-item"><strong>LinkedIn</strong><span>linkedin.com/in/silas-chalwe-2085a5414</span></div>
+      </aside>
+
+      <div class="main">
+        <div class="main-title first">Selected Projects — Continued</div>
+        <div id="v-projects-two"></div>
+
+        <div class="main-title">Additional Engineering Work</div>
+        <div id="v-additional"></div>
+
+        <div class="main-title">Education & Technical Development</div>
+        <div id="v-education-main"></div>
+      </div>
+    </section>
+  </main>
 </div>
+
 <script>
-    const TEMPLATE_RESUME_DATA = {
-        name: "YOUR NAME",
-        title: "Professional Title",
-        contact: {
-            "EMAIL": "you@example.com",
-            "LOCATION": "City, Country",
-            "PHONE": "+000 000 000 000",
-            "LINKEDIN": "linkedin.com/in/your-profile",
-            "GITHUB": "github.com/your-username"
-        },
-        certifications: [
-            { title: "Certification Name", desc: "Issuing organization, year" },
-            { title: "Training Programme", desc: "Short description or credential detail" }
-        ],
-        memberships: [
-            { title: "Professional Membership", desc: "Association or chapter name" }
-        ],
-        profile: "Briefly summarize your professional focus, strongest skills, and the type of value you bring. Keep this section short, specific, and easy to scan.",
-        skills: [
-            { category: "Technical", items: "Skill one, Skill two, Skill three" },
-            { category: "Tools", items: "Tool one, Tool two, Tool three" },
-            { category: "Platforms", items: "Platform one, Platform two, Platform three" }
-        ],
-        experience: [
-            { title: "Role or Position", date: "Year - Present", subtitle: "Organization Name", bullets: ["Describe a responsibility, project, or measurable achievement.", "Describe the tools, systems, or process you worked with."] }
-        ],
-        projects: [
-            { title: "Project Name", date: "Project Type", bullets: ["Describe what the project does, your role, and the technologies used."] }
-        ],
-        education: [
-            { title: "Degree or Certificate", date: "Year", subtitle: "Institution Name", bullets: ["Add relevant academic result, coursework, award, or activity."] }
-        ]
-    };
-    let RESUME_DATA = null;
-    let ACTIVE_TAB = 'profile';
-    let IS_MY_RESUME = false;
+const RESUME_DATA = {
+  name: "Silas Chalwe",
+  title: "Final-Year Computer Engineering Student | Software & Embedded Systems Developer",
+  profile: "Final-year Bachelor of Computer Engineering student at The Copperbelt University with practical experience in software development, backend systems, embedded/IoT engineering, mobile applications and computer vision. Works mainly with C++, Java and Python across ESP32, Spring Boot, Django and AI-assisted systems. Experience includes short-term freelance backend work for an Italian legal-technology client, ongoing client computer-vision development, and current CS400 work on an ESP32-based solar DC load-management system involving sensing, communication, power-budget logic and an adapted Best-First Search algorithm.",
+  contact: {
+    email: "mchalwesilas@gmail.com",
+    phone: "+260 961 538 892",
+    location: "Luanshya, Copperbelt, Zambia",
+    github: "github.com/SilasChalwe",
+    linkedin: "linkedin.com/in/silas-chalwe-2085a5414"
+  },
+  skills: [
+    ["Programming", "C++, Java, Python, JavaScript, TypeScript"],
+    ["Backend & APIs", "Spring Boot, Django, Node.js/Express, REST APIs, JPA, JWT, WebSocket/STOMP"],
+    ["Embedded & IoT", "ESP32, PlatformIO, ESP-NOW, MQTT, INA219, relay control"],
+    ["Computer Vision", "OpenCV, MediaPipe, DeepFace, YOLO, real-time temporal event tracking"],
+    ["Data & Tools", "PostgreSQL, SQL, Redis, Git/GitHub, Docker, Linux"]
+  ],
+  experience: [
+    {
+      title: "Freelance Backend Developer - Legal Technology Project, Italy",
+      date: "23 Feb - 4 Mar 2026",
+      subtitle: "10-day freelance project | Python, Django, Web Scraping, GitHub",
+      bullets: [
+        "Developed Django scraping and data-extraction components for structured lawyer information from official Italian web and PDF sources, with database persistence, logging and recoverable runs.",
+        "Collaborated remotely through GitHub, technical calls and staged delivery, including handling rate-limited and anti-robot responses during platform integration."
+      ]
+    },
+    {
+      title: "Computer Vision Developer - Client Project",
+      date: "2026 - Present",
+      subtitle: "Ongoing client work | Python, OpenCV, MediaPipe, DeepFace, YOLO",
+      bullets: [
+        "Developing a CPU-based real-time vision pipeline for facial expression, eye gaze, head pose, posture cues, person detection and presence/attention event tracking.",
+        "Implemented temporal state tracking, rate-limited inference and cached model outputs to keep the pipeline practical on CPU hardware."
+      ]
+    }
+  ],
+  projects: [
+    {
+      title: "IoT Solar DC Load Management - CS400 Final-Year Project",
+      date: "2026 - Present",
+      subtitle: "C++ | ESP32 | ESP-NOW | MQTT | INA219 | Best-First Search",
+      bullets: [
+        "Designing a distributed low-voltage DC load-management system using a central ESP32, smart nodes, INA219 sensing, relay switching and ESP-NOW.",
+        "Developing power-budget and adapted Best-First Search logic using battery state, user priority, startup demand and electrical safety constraints."
+      ]
+    },
+    {
+      title: "CampusNest - Student Accommodation Backend",
+      date: "Personal Project",
+      subtitle: "Java | Spring Boot | PostgreSQL | JWT | WebSocket/STOMP",
+      bullets: [
+        "Building student, landlord and administrator backend workflows with REST controllers, JPA, JWT authentication and role-based security."
+      ]
+    },
+    {
+      title: "MFocus - AI-Assisted Student Productivity App",
+      date: "Ongoing",
+      subtitle: "React Native / Expo | TypeScript | Node.js / Express",
+      bullets: [
+        "Developing a mobile study-planning app with timetable and task tools, AI-assisted study features, PDF text extraction and reminders."
+      ]
+    },
+    {
+      title: "Covian Secure Rendering System",
+      date: "Ongoing",
+      subtitle: "C++ | WebAssembly | JavaScript | Trusted Types",
+      bullets: [
+        "Exploring a security-first rendering architecture with context-aware encoding, URL validation, restricted DOM rendering, Trusted Types enforcement and adversarial tests."
+      ]
+    },
+    {
+      title: "Agro Geofencing & Movement Tracking API",
+      date: "Personal Project",
+      subtitle: "JavaScript | REST API | Geofencing | Server-Sent Events",
+      bullets: [
+        "Built a multi-tenant backend for GPS movement tracking and geofencing with authentication, rate limiting, GPS-quality filtering, movement validation and live geofence events."
+      ]
+    }
+  ],
+  education: [
+    {
+      title: "Bachelor of Computer Engineering",
+      date: "2022 - Present",
+      subtitle: "The Copperbelt University, Zambia",
+      bullets: [
+        "Final-year student completing CS400 Major Project and Seminars.",
+        "Academic focus includes software development, computer systems, networking, security, embedded systems and engineering design."
+      ]
+    }
+  ],
+  certifications: [
+    ["C++ Advanced", "Cisco Networking Academy | May 2026"],
+    ["Python Essentials 1", "Cisco Networking Academy | May 2026"],
+    ["YouthTeamUp DVE", "IoT/AI/LoRa, REST-MQTT | Mar-Jun 2026"],
+    ["YouthTeamUp SVE", "AI/IoT, project management & innovation | Jul 2025"],
+    ["RootLab Ignite Bootcamp", "Mukuba UniPod / UNDP | Nov 2025"],
+    ["ICTAZ CBU Recognition", "2024/25"]
+  ],
+  coursework: [
+    "Software Development (CS 130)",
+    "C++ Programming (CS 150 / CS 250)",
+    "Software Engineering (CS 230)",
+    "Java Programming (CS 350)",
+    "High Performance Computing",
+    "Computer & Information Security",
+    "Internet Technologies",
+    "Mobile Networks",
+    "Signal Processing",
+    "Robotics",
+    "Probability & Statistics"
+  ],
+  activities: [
+    ["ICTAZ - CBU Chapter", "Clubs Coordinator | 2025-Present"],
+    ["ICTAZ Design Club", "Assisted with planning and prototyping | 2024-2025"],
+    ["ITS Kopala Summit", "Attendee | 2025"],
+    ["ZRA Hackathon", "Participant | 2025"],
+    ["ZICTA Innovation Program", "Participant | 2025"],
+    ["12th International Youth Conference", "Participant | 2025"]
+  ],
+  additional: [
+    {
+      title: "CS440 - Chinese Wall Security Model",
+      date: "Academic Project",
+      subtitle: "Spring Boot | React | TypeScript",
+      bullets: [
+        "Implemented a full-stack academic system demonstrating conflict-of-interest isolation, bank-to-bank access controls and access auditing."
+      ]
+    },
+    {
+      title: "Bible Quiz App",
+      date: "Java Project",
+      subtitle: "JavaFX | MVC-style structure | JSON persistence",
+      bullets: [
+        "Developed a modular JavaFX quiz application with structured question data, score persistence, timers, audio feedback and responsive display handling."
+      ]
+    }
+  ]
+};
 
-    function cloneData(data) {
-        return JSON.parse(JSON.stringify(data));
-    }
+let compact = false;
 
-    async function loadMyResumeData() {
-        const response = await fetch('cv.json', { cache: 'no-store' });
-        if (!response.ok) throw new Error(`Unable to load cv.json (${response.status})`);
-        RESUME_DATA = await response.json();
-    }
+function esc(value){
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
 
-    function showLoadError(error) {
-        document.getElementById('dashboard-panel').classList.add('hidden');
-        document.body.classList.remove('dashboard-mode');
-        document.getElementById('preview-panel').innerHTML = `<div class="a4-page" style="padding: 30px;"><div class="main-section-title" style="margin-top: 0;">Resume Data Error</div><p class="profile-text">Could not load your cv.json. Use #cv or #dash for the reusable template, or make sure cv.json is in the same folder as resume.html before opening #silaschalwe or #silaschalwedash.</p><p class="profile-text">${escapeHtml(error.message)}</p></div>`;
-    }
+function buildBlocks(items){
+  return items.map(item => `
+    <div class="block">
+      <div class="block-head">
+        <div class="block-title">${esc(item.title)}</div>
+        <div class="block-date">${esc(item.date)}</div>
+      </div>
+      ${item.subtitle ? `<div class="block-sub">${esc(item.subtitle)}</div>` : ""}
+      <ul>${item.bullets.map(b => `<li>${esc(b)}</li>`).join("")}</ul>
+    </div>
+  `).join("");
+}
 
-    function escapeHtml(value) {
-        return String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
-    }
+function render(){
+  document.getElementById("v-name").textContent = RESUME_DATA.name;
+  document.getElementById("v-title").textContent = RESUME_DATA.title;
+  document.getElementById("v-profile").textContent = RESUME_DATA.profile;
 
-    function escapeAttr(value) {
-        return escapeHtml(value);
-    }
+  document.getElementById("v-contact").innerHTML = `
+    <div class="side-label">Email</div><div class="side-value">${esc(RESUME_DATA.contact.email)}</div>
+    <div class="side-label">Phone</div><div class="side-value">${esc(RESUME_DATA.contact.phone)}</div>
+    <div class="side-label">Location</div><div class="side-value">${esc(RESUME_DATA.contact.location)}</div>
+    <div class="side-label">GitHub</div><div class="side-value">${esc(RESUME_DATA.contact.github)}</div>
+    <div class="side-label">LinkedIn</div><div class="side-value">${esc(RESUME_DATA.contact.linkedin)}</div>
+  `;
 
-    function saveData() {
-        if (!RESUME_DATA) return;
-        const dataStr = JSON.stringify(RESUME_DATA, null, 4);
-        const blob = new Blob([dataStr], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = IS_MY_RESUME ? "cv.json" : "template-cv.json";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    }
+  document.getElementById("v-certs").innerHTML =
+    RESUME_DATA.certifications.map(x => `<div class="side-item"><strong>${esc(x[0])}</strong><span>${esc(x[1])}</span></div>`).join("");
 
-    async function reloadResumeData() {
-        try {
-            if (IS_MY_RESUME) {
-                await loadMyResumeData();
-            } else {
-                RESUME_DATA = cloneData(TEMPLATE_RESUME_DATA);
-            }
-            setupDashboard();
-        } catch (error) {
-            showLoadError(error);
-        }
-    }
+  document.getElementById("v-skills").innerHTML =
+    RESUME_DATA.skills.map(x => `<p class="skill-line"><strong>${esc(x[0])}:</strong> ${esc(x[1])}</p>`).join("");
 
-    function printResume() {
-        window.print();
-    }
+  document.getElementById("v-experience").innerHTML = buildBlocks(RESUME_DATA.experience);
+  document.getElementById("v-projects-one").innerHTML = buildBlocks(RESUME_DATA.projects.slice(0,2));
+  document.getElementById("v-projects-two").innerHTML = buildBlocks(RESUME_DATA.projects.slice(2));
+  document.getElementById("v-additional").innerHTML = buildBlocks(RESUME_DATA.additional);
+  document.getElementById("v-education-main").innerHTML = buildBlocks(RESUME_DATA.education);
 
-    function setCompactMode(isCompact) {
-        document.body.classList.toggle('compact-resume', isCompact);
-    }
+  const edu = RESUME_DATA.education[0];
+  document.getElementById("v-education-side").innerHTML =
+    `<div class="side-item"><strong>${esc(edu.title)}</strong><span>${esc(edu.subtitle)}<br>${esc(edu.date)}</span></div>`;
 
-    function showTab(tabName) {
-        ACTIVE_TAB = tabName;
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tabName));
-        document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.toggle('active', panel.dataset.panel === tabName));
-    }
+  document.getElementById("v-coursework").innerHTML =
+    RESUME_DATA.coursework.map(x => `<div class="side-item"><span style="color:#e7edf1">${esc(x)}</span></div>`).join("");
 
-    function isDashboardHash() {
-        return ['#dash', '#dashb', '#dashboard', '#silaschalwedash', '#silaschalwecvdash', '#@silaschalwedash', '#@silaschalwecvdash'].includes(window.location.hash.toLowerCase());
-    }
+  document.getElementById("v-activities").innerHTML =
+    RESUME_DATA.activities.map(x => `<div class="side-item"><strong>${esc(x[0])}</strong><span>${esc(x[1])}</span></div>`).join("");
+}
 
-    function isMyResumeHash() {
-        return ['#silaschalwe', '#silaschalwecv', '#silaschalwedash', '#silaschalwecvdash', '#@silaschalwe', '#@silaschalwecv', '#@silaschalwedash', '#@silaschalwecvdash'].includes(window.location.hash.toLowerCase());
-    }
+function setupEditor(){
+  const fields = {
+    "f-name":["name"],
+    "f-title":["title"],
+    "f-profile":["profile"],
+    "f-email":["contact","email"],
+    "f-phone":["contact","phone"],
+    "f-location":["contact","location"],
+    "f-github":["contact","github"],
+    "f-linkedin":["contact","linkedin"]
+  };
 
-    function setDashboardMode(isOpen) {
-        document.body.classList.toggle('dashboard-mode', isOpen);
-        document.getElementById('dashboard-panel').classList.toggle('hidden', !isOpen);
-    }
-
-    function toggleDashboard() {
-        const isOpen = document.getElementById('dashboard-panel').classList.contains('hidden');
-        setDashboardMode(isOpen);
-        history.replaceState(null, '', isOpen ? (IS_MY_RESUME ? '#silaschalwedash' : '#dash') : `${window.location.pathname}${IS_MY_RESUME ? '#silaschalwe' : ''}`);
-    }
-
-    async function loadRouteData() {
-        IS_MY_RESUME = isMyResumeHash();
-        if (IS_MY_RESUME) {
-            await loadMyResumeData();
-        } else {
-            RESUME_DATA = cloneData(TEMPLATE_RESUME_DATA);
-        }
-    }
-
-    function setupDashboard() {
-        if (!RESUME_DATA) return;
-        document.getElementById('data-source-label').innerText = IS_MY_RESUME ? 'Personal CV mode: loaded from cv.json' : 'Reusable template mode: using placeholder data';
-        document.getElementById('export-btn').innerText = IS_MY_RESUME ? 'Export Updated cv.json' : 'Export Template JSON';
-        document.getElementById('input-name').value = RESUME_DATA.name; document.getElementById('input-title').value = RESUME_DATA.title; document.getElementById('input-profile').value = RESUME_DATA.profile;
-        let contactCtrls = ''; for (const key in RESUME_DATA.contact) { contactCtrls += `<div class="form-group"><label>${escapeHtml(key)}</label><input type="text" value="${escapeAttr(RESUME_DATA.contact[key])}" oninput="RESUME_DATA.contact['${escapeAttr(key)}']=this.value; updateResume();"></div>`; }
-        document.getElementById('contact-fields').innerHTML = contactCtrls;
-        renderListControls('certifications', ['title', 'desc']); renderListControls('memberships', ['title', 'desc']); renderListControls('skills', ['category', 'items']);
-        renderBlockControls('experience'); renderBlockControls('projects'); renderBlockControls('education'); updateResume(); showTab(ACTIVE_TAB);
-    }
-    function renderItemActions(key, idx) {
-        return `<div class="item-actions"><button class="btn btn-mini" onclick="moveItem('${key}', ${idx}, -1)">Up</button><button class="btn btn-mini" onclick="moveItem('${key}', ${idx}, 1)">Down</button><button class="btn btn-danger" onclick="removeItem('${key}', ${idx})">Delete</button></div>`;
-    }
-    function renderListControls(key, fields) { let html = ''; RESUME_DATA[key].forEach((item, idx) => { html += `<div class="repeater-block">${renderItemActions(key, idx)}${fields.map(f => `<div class="form-group"><label>${escapeHtml(f)}</label><input type="text" value="${escapeAttr(item[f] || '')}" oninput="RESUME_DATA['${key}'][${idx}]['${f}']=this.value; updateResume();"></div>`).join('')}</div>`; }); document.getElementById(`${key}-ctrl`).innerHTML = html; }
-    function renderBlockControls(key) { let html = ''; RESUME_DATA[key].forEach((block, idx) => { html += `<div class="repeater-block">${renderItemActions(key, idx)}<div class="form-group"><label>Title / Role</label><input type="text" value="${escapeAttr(block.title)}" oninput="RESUME_DATA['${key}'][${idx}].title=this.value; updateResume();"></div><div class="form-group"><label>Timeline / Date</label><input type="text" value="${escapeAttr(block.date)}" oninput="RESUME_DATA['${key}'][${idx}].date=this.value; updateResume();"></div>${block.subtitle !== undefined ? `<div class="form-group"><label>Institution / Subtitle</label><input type="text" value="${escapeAttr(block.subtitle)}" oninput="RESUME_DATA['${key}'][${idx}].subtitle=this.value; updateResume();"></div>` : ''}<label>Bullet Points Descriptions</label><div id="${key}-${idx}-bullets">${block.bullets.map((b, bIdx) => `<div class="bullet-input-group"><input type="text" value="${escapeAttr(b)}" oninput="RESUME_DATA['${key}'][${idx}].bullets[${bIdx}]=this.value; updateResume();"><button class="btn-danger" style="float:none;" onclick="removeBullet('${key}', ${idx}, ${bIdx})">X</button></div>`).join('')}</div><button class="btn btn-secondary" style="font-size:7.5pt; padding:4px 8px;" onclick="addBullet('${key}', ${idx})">+ Add Bullet Line</button></div>`; }); document.getElementById(`${key}-ctrl`).innerHTML = html; }
-    function addItem(key) { RESUME_DATA[key].push(key === 'skills' ? {category: 'New Category', items: ''} : {title: 'New Entry', desc: 'Detail'}); setupDashboard(); }
-    function addBlockItem(key) { let newBlock = { title: "New Position", date: "Timeline", bullets: ["New line."] }; if (key !== 'projects') newBlock.subtitle = "Organization"; RESUME_DATA[key].push(newBlock); setupDashboard(); }
-    function removeItem(key, idx) { RESUME_DATA[key].splice(idx, 1); setupDashboard(); }
-    function moveItem(key, idx, direction) { const nextIdx = idx + direction; if (nextIdx < 0 || nextIdx >= RESUME_DATA[key].length) return; const [item] = RESUME_DATA[key].splice(idx, 1); RESUME_DATA[key].splice(nextIdx, 0, item); setupDashboard(); }
-    function addBullet(key, idx) { RESUME_DATA[key][idx].bullets.push("New line."); setupDashboard(); }
-    function removeBullet(key, idx, bIdx) { RESUME_DATA[key][idx].bullets.splice(bIdx, 1); setupDashboard(); }
-    function validateResume() {
-        const warnings = [];
-        if (!RESUME_DATA.name?.trim()) warnings.push('Full name is empty.');
-        if (!RESUME_DATA.title?.trim()) warnings.push('Professional title is empty.');
-        if (!RESUME_DATA.profile?.trim()) warnings.push('Profile summary is empty.');
-        if (RESUME_DATA.profile && RESUME_DATA.profile.length > 650) warnings.push('Profile summary is long; consider trimming it for a one-page CV.');
-        ['experience', 'projects', 'education'].forEach(key => {
-            if (!RESUME_DATA[key]?.length) warnings.push(`${key} section has no entries.`);
-            RESUME_DATA[key]?.forEach((item, idx) => {
-                if (!item.title?.trim()) warnings.push(`${key} entry ${idx + 1} has no title.`);
-                if (!item.bullets?.length) warnings.push(`${key} entry ${idx + 1} has no bullet points.`);
-            });
-        });
-        const panel = document.getElementById('validation-panel');
-        panel.classList.toggle('hidden', warnings.length === 0);
-        panel.innerHTML = warnings.length ? `<strong>Review before exporting</strong><ul>${warnings.map(warning => `<li>${escapeHtml(warning)}</li>`).join('')}</ul>` : '';
-    }
-    function updateResume() {
-        RESUME_DATA.name = document.getElementById('input-name').value;
-        RESUME_DATA.title = document.getElementById('input-title').value;
-        RESUME_DATA.profile = document.getElementById('input-profile').value;
-        document.getElementById('view-name').innerText = RESUME_DATA.name; document.getElementById('view-title').innerText = RESUME_DATA.title; document.getElementById('view-profile').innerText = RESUME_DATA.profile;
-        document.getElementById('view-contact').innerHTML = Object.entries(RESUME_DATA.contact).map(([k, v]) => `<div class="sidebar-label">${escapeHtml(k)}</div><div class="sidebar-value">${escapeHtml(v)}</div>`).join('');
-        document.getElementById('view-certs').innerHTML = RESUME_DATA.certifications.map(c => `<div class="sidebar-item"><div class="sidebar-item-title">${escapeHtml(c.title)}</div><div class="sidebar-item-desc">${escapeHtml(c.desc)}</div></div>`).join('');
-        document.getElementById('view-memberships').innerHTML = RESUME_DATA.memberships.map(m => `<div class="sidebar-item"><div class="sidebar-item-title">${escapeHtml(m.title)}</div><div class="sidebar-item-desc">${escapeHtml(m.desc)}</div></div>`).join('');
-        document.getElementById('view-skills').innerHTML = RESUME_DATA.skills.map(s => `<div class="skills-line"><span class="skills-tech">${escapeHtml(s.category)}:</span> ${escapeHtml(s.items)}</div>`).join('');
-        function build(arr) { return arr.map(b => `<div class="block-item"><div class="block-header"><div class="block-title">${escapeHtml(b.title)}</div><div class="block-date">${escapeHtml(b.date)}</div><div class="clear"></div></div>${b.subtitle ? `<div class="block-subtitle">${escapeHtml(b.subtitle)}</div>` : ''}<ul>${b.bullets.map(bullet => `<li>${escapeHtml(bullet)}</li>`).join('')}</ul></div>`).join(''); }
-        document.getElementById('view-experience').innerHTML = build(RESUME_DATA.experience); document.getElementById('view-projects').innerHTML = build(RESUME_DATA.projects); document.getElementById('view-education').innerHTML = build(RESUME_DATA.education);
-        validateResume();
-    }
-    window.addEventListener('load', async () => {
-        try {
-            await loadRouteData();
-            setupDashboard();
-            setDashboardMode(isDashboardHash());
-        } catch (error) {
-            showLoadError(error);
-        }
+  for(const [id,path] of Object.entries(fields)){
+    let value = RESUME_DATA;
+    path.forEach(k => value = value[k]);
+    const el = document.getElementById(id);
+    el.value = value;
+    el.addEventListener("input", () => {
+      if(path.length === 1) RESUME_DATA[path[0]] = el.value;
+      else RESUME_DATA[path[0]][path[1]] = el.value;
+      render();
     });
+  }
 
-    window.addEventListener('hashchange', async () => {
-        try {
-            await loadRouteData();
-            setupDashboard();
-            setDashboardMode(isDashboardHash());
-        } catch (error) {
-            showLoadError(error);
-        }
-    });
+  renderEditableBlocks("experience-editor","experience");
+  renderEditableBlocks("projects-editor","projects");
+  renderEditableBlocks("education-editor","education");
+}
+
+function renderEditableBlocks(containerId,key){
+  const container = document.getElementById(containerId);
+  container.innerHTML = RESUME_DATA[key].map((item,index) => `
+    <div class="editor-card">
+      <div class="editor-card-title">${esc(item.title)}</div>
+      <div class="form-group"><label>Title</label><input type="text" value="${esc(item.title)}" oninput="RESUME_DATA['${key}'][${index}].title=this.value; render();"></div>
+      <div class="editor-grid">
+        <div class="form-group"><label>Date</label><input type="text" value="${esc(item.date)}" oninput="RESUME_DATA['${key}'][${index}].date=this.value; render();"></div>
+        <div class="form-group"><label>Subtitle</label><input type="text" value="${esc(item.subtitle||"")}" oninput="RESUME_DATA['${key}'][${index}].subtitle=this.value; render();"></div>
+      </div>
+      ${item.bullets.map((b,bIndex)=>`
+        <div class="form-group">
+          <label>Bullet ${bIndex+1}</label>
+          <textarea oninput="RESUME_DATA['${key}'][${index}].bullets[${bIndex}]=this.value; render();">${esc(b)}</textarea>
+        </div>
+      `).join("")}
+    </div>
+  `).join("");
+}
+
+function toggleEditor(){
+  const editor = document.getElementById("editor");
+  editor.classList.toggle("hidden");
+  document.getElementById("editBtn").textContent =
+    editor.classList.contains("hidden") ? "Edit my CV" : "Close editor";
+}
+
+function toggleCompact(){
+  compact = !compact;
+  document.body.classList.toggle("compact",compact);
+}
+
+function downloadResumeData(){
+  const blob = new Blob([JSON.stringify(RESUME_DATA,null,2)],{type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "Silas_Chalwe_CV_Backup.json";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+render();
+setupEditor();
 </script>
 </body>
 </html>
