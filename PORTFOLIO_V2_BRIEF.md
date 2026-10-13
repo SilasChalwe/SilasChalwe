@@ -51,3 +51,27 @@ Premium, confident editorial engineering portfolio, distinct personal identity r
 GitHub: https://github.com/SilasChalwe
 Email: mchalwesilas@gmail.com
 LinkedIn: https://www.linkedin.com/in/silas-chalwe-2085a5414
+
+
+## CRITICAL UPDATE — User's design breadth and assets (13 Oct 2026)
+User explicitly expects substantial UI/UX and graphic design coverage, including Figma and visual/graph designs, not only software engineering.
+- **Coded Master / Coded**: user reports UI/client design work; verify exact deliverables and permission for publication. Repo `coded-backend`; Drive Company and Business > Clients > Coded.
+- **iSort**: Figma/product design and specification work; Drive Company and Business > isort > docs includes Product Definition v0.1, SRS v0.1, AI Feasibility v0.1. Credit UI/UX and product specifications if evidenced, but do not imply app implemented.
+- **CovianHive.tech**: user reports designing the website; include real site screenshots and contribution details after verification.
+- **MFocus**: user reports application/product design and GitHub repository `Mfocus`; inspect actual implementation and design evidence.
+- **AgroSpeak Connect / ASPECT**: user-provided 32-page farmer-app prototype has detailed designed screens, including onboarding/auth, marketplace, offline/empty/error states, produce listings, English/Bemba voice interaction, farm mapping/geofencing, sensor states, and more. Case study should emphasize complete user journeys, operational states and design-system consistency. Avoid treating mock interfaces as live operational systems.
+- **AIMZO**: user-provided 82-page design PDF contains customer booking/mobile, provider dashboard/mobile and admin web interface, service search, scheduling, payments, analytics charts and workflows. Credit product/UI work as allowed and verify ownership and confidentiality before public release.
+- **Gate**: public-facing portfolio should illustrate its SMS inbox/quarantine allow/block interactions based on actual design/screens. Gate's documented concept is not evidence of a released app.
+- **Graphic design and visual communication**: present brand identity, marketing assets, charts, dashboard graphics, business collateral and design process only where user is authorized to publish.
+- **Other client work**: include curated, consent-cleared case studies, not merely a client name/logo gallery.
+
+### Asset ingestion requirements
+User requested every supplied relevant design/document asset and the three Drive folder collections be placed in the `port-v2` Git branch for Gemini to convert to image assets. THIS IS NOT YET DONE. Before adding assets to a **public** GitHub repository, inventory and screen for personally identifying information, client secrets, internal architecture, third-party logos/content, proprietary contracts and access permissions. Never upload folders wholesale without review.
+Expected target directories after clearance: `portfolio-sources/approved/` for source PDFs/docs, `assets/projects/<slug>/` for optimized rendered page images and screenshots. A document may be included as approved source while only selected screenshots are displayed on the site. Never claim docs have been uploaded until they appear in Git tree.
+Document sources:
+- uploaded `AgroSpeak Connect — Farmer app prototype(1).pdf` (32 pages)
+- uploaded `AIMZO (1).pdf` (82 pages)
+- Gate Drive documentation including `gate-ui.pdf` and architecture
+- AI Agent Platform Drive documents (plans; not built status)
+- Company and Business nested design docs, particularly Gate, isort, Clients, Compiler, CovianHive, MFocus where relevant.
+Avoid copying confidential material to the public website or repo without owner's approval. Track provenance and publication status for each item.
